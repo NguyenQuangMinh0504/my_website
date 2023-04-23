@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-p-*+)5-k3jc6$ch7se5roeu7x6&gw(+hydv5*trhxuf+5i_=hj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["saugau.com"]
+ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
 
 # Application definition
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["saugau.com"]
 INSTALLED_APPS = [
     "polls.apps.PollsConfig",
     "dethi.apps.DethiConfig",
+    "running.apps.RunningConfig",
     "mainpage.apps.MainpageConfig",
     'django.contrib.admin',
     'django.contrib.auth',

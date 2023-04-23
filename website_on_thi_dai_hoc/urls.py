@@ -20,5 +20,6 @@ urlpatterns = [
     path("polls/", include("polls.urls")),
     path("dethi/", include("dethi.urls")),
     path('admin/', admin.site.urls),
+    path("running", include("running.urls")),
     path("", include("mainpage.urls")),
 ]
