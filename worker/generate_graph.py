@@ -18,3 +18,6 @@ for i in range(len(running_list)):
     pace_list.append(running_time_list[i] / running_list[i])
 plt.plot(date_list, pace_list)
 plt.savefig("../running/static/running/images/pace.png")
+plt.clf()
+plt.bar(date_list, running_time_list)
+plt.savefig("../running/static/running/images/duration.png")
