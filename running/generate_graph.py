@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
-from running.data import running_list, running_time_list
+from data import running_list, running_time_list
 
 start_date = datetime(year=2023, month=4, day=10)
 end_date = datetime.now()

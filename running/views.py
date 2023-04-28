@@ -5,4 +5,4 @@ from .data import running_list
 
 
 def index(request):
-    return render(request, "running/index.html", {})
+    return render(request, "running/index.html", {"consecutive_day": len(running_list)})
