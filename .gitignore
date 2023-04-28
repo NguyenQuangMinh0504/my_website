@@ -6,4 +6,6 @@ __pycache__
 venv
 #MacOS file manage
 .DS_Store
+*.log
+
 
