@@ -14,16 +14,13 @@ class Data(BaseModel):
     password: str
 
 
-@app.post("/running", status_code=200)
+@app.post("/api/running", status_code=200)
 async def add_data(data: Data):
     try:
-        date = datetime.strptime(data.day, "%x")
+        datetime.strptime(data.day, "%x")
         redis_client.set(data.day, json.dumps(
             {"time": data.duration, "distance": data.distance})
             )
-        print(date)
-        print(data.duration)
-        print(data.distance)
         if data.password != "qmqmqm8c3":
             raise HTTPException(status_code=404, detail="Sai mật khẩu")
     except ValueError:
