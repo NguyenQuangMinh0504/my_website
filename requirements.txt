@@ -3,3 +3,4 @@ matplotlib
 redis
 fastapi
 uvicorn
+supervisor
