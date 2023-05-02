@@ -1,5 +1,6 @@
 Django
 matplotlib
+# Databases
 redis
 fastapi
 uvicorn
