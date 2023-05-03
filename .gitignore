@@ -7,5 +7,6 @@ venv
 #MacOS file manage
 .DS_Store
 *.log
-
+# Redis backup
+dump.rdb
 

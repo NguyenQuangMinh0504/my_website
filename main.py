@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from redis import Redis
 import json
+from running.generate_graph import generate_graph
 redis_client = Redis(host="127.0.0.1", port=6379, db=0)
 app = FastAPI()
 
@@ -23,6 +24,7 @@ async def add_data(data: Data):
             )
         if data.password != "qmqmqm8c3":
             raise HTTPException(status_code=404, detail="Sai mật khẩu")
+        generate_graph()
     except ValueError:
         raise HTTPException(status_code=404, detail="Format ngày không hợp lệ")
     return "Update thành công"
