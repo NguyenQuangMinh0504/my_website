@@ -6,5 +6,10 @@ from db import running_table
 
 
 def index(request: HttpRequest):
-    return render(request, "running/index.html",
-                  {"consecutive_day": len(running_table.keys())})
+    context = {}
+    if "user_cookie" in request.COOKIES:
+        context["user_cookie"] = request.COOKIES["user_cookie"]
+    context["consecutive_day"] = len(running_table.keys())
+    return render(request=request,
+                  template_name="running/index.html",
+                  context=context)

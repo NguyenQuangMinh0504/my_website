@@ -10,7 +10,8 @@
 <body>
   <div class="container">
     <h1>Registration Page</h1>
-    <form action="/register" method="post">
+    <form action="/register/" method="post">
+      {% csrf_token %}
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" id="username" name="username" required>
