@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import register, login, logout
+from .views import register, login, logout, database
 
 urlpatterns = [
     path("polls/", include("polls.urls")),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("running/", include("running.urls")),
     path("", include("mainpage.urls")),
+    path("test/", view=database, name="test"),
 ]

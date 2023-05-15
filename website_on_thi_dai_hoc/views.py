@@ -1,5 +1,9 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("agg")
 from db import user_table
 
 
@@ -23,3 +27,36 @@ def logout(request: HttpRequest):
     response = HttpResponseRedirect(redirect_to="/")
     response.set_cookie("user_cookie", "", max_age=0.01)
     return response
+
+
+def database(request: HttpRequest):
+    data = {"05/01/23": {"my-website": 1, "project-2": 1},
+            "05/02/23": {"my-website": 1, "project-2": 3},
+            "05/03/23": {"my-website": 1, "project-2": 1},
+            "05/04/23": {"my-website": 1},
+            "05/05/23": {"my-website": 1},
+            "05/06/23": {},
+            "05/07/23": {"my-website": 1, "project-2": 1}
+            }
+    keys = []
+    for day in data.keys():
+        for key in data[day].keys():
+            if key not in keys:
+                keys.append(key)
+    print(keys)
+    formatted_data = []
+    for day in data.keys():
+        row = [day]
+        for key in keys:
+            row.append(data[day].get(key, 0))
+        formatted_data.append(row)
+    columns = ["Day"]
+    columns.extend(keys)
+    print(formatted_data)
+    print(columns)
+
+    df = pd.DataFrame(formatted_data, columns=columns)
+    df.plot(x="Day", kind="bar", stacked=True, title="Study time")
+    plt.tight_layout()
+    plt.savefig("./study.png", dpi=600)
+    return HttpResponse("hey")
