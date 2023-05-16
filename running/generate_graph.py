@@ -26,6 +26,7 @@ def generate_graph():
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
     plt.plot(date_list, running_list)
     plt.savefig(f"{PROJECT_PATH}/running/static/running/images/distance.png")
+
     plt.clf()
     pace_list = []
     for i in range(len(running_list)):
@@ -40,6 +41,7 @@ def generate_graph():
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
     plt.bar(date_list, running_time_list)
     plt.savefig(f"{PROJECT_PATH}/running/static/running/images/duration.png")
+    plt.clf()
 
 
 if __name__ == "__main__":
