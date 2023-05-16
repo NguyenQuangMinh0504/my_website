@@ -13,6 +13,7 @@ def generate_graph():
     date_list = []
     running_list = []
     running_time_list = []
+    plt.clf()
 
     while start_date < end_date:
         running_data = running_table.get(start_date.strftime("%x"))
