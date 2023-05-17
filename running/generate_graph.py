@@ -23,7 +23,7 @@ def generate_graph():
             running_time_list.append(running_data["time"])
             date_list.append(start_date.strftime("%x"))
         start_date += timedelta(days=1)
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
     plt.plot(date_list, running_list)
     plt.savefig(f"{PROJECT_PATH}/running/static/running/images/distance.png")
@@ -32,13 +32,11 @@ def generate_graph():
     pace_list = []
     for i in range(len(running_list)):
         pace_list.append(running_time_list[i] / running_list[i])
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
     plt.plot(date_list, pace_list)
     plt.axhline(y=8, color="red", linestyle="dashed")
     plt.savefig(f"{PROJECT_PATH}/running/static/running/images/pace.png")
     plt.clf()
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
     plt.bar(date_list, running_time_list)
     plt.savefig(f"{PROJECT_PATH}/running/static/running/images/duration.png")
