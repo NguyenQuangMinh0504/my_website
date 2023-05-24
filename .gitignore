@@ -9,4 +9,5 @@ venv
 *.log
 # Redis backup
 dump.rdb
-
+# vscode
+.vscode

@@ -1,0 +1,11 @@
+--- 
+- hosts: website-server
+  name: Synchronize code using github
+  tasks:
+    - name: Pulling code from github
+      ansible.builtin.git:
+        repo: https://NguyenQuangMinh0504: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@github.com/NguyenQuangMinh0504/website_on_thi_dai_hoc.git
+        dest: /home/nguyenquangminh/website_on_thi_dai_hoc
+        update: yes
+        clone: yes
+        force: yes

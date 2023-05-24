@@ -1,0 +1,32 @@
+---
+- hosts: website-server
+  become: yes
+  name: Install necessary package
+  tasks:
+    - name: Install git
+      ansible.builtin.apt:
+        name:
+          - git
+    - name: Install lsof
+      ansible.builtin.apt:
+        name:
+          - lsof
+    - name: Install python venv setup
+      ansible.builtin.apt:
+        name:
+          - python3-venv
+    - name: Install redis server
+      ansible.builtin.apt:
+        name:
+          - redis-server
+
+    - name: Add openresty GPG key
+      ansible.builtin.apt_key:
+        url: https://openresty.org/package/pubkey.gpg
+    - name: Add openresty repository
+      ansible.builtin.apt_repository:
+        repo: deb http://openresty.org/package/debian bullseye openresty
+    - name: Install openresty
+      ansible.builtin.apt:
+        name:
+          - openresty
