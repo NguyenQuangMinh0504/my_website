@@ -1,0 +1,9 @@
+---
+- hosts: website-server
+  name: Running server
+  become: yes
+  tasks:
+    - name: Running openresty server
+      ansible.builtin.command:
+        chdir: /home/nguyenquangminh/website_on_thi_dai_hoc/deployment
+        cmd: openresty -c nginx.conf -p /home/nguyenquangminh/website_on_thi_dai_hoc/deployment
