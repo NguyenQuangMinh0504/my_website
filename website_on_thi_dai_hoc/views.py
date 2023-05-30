@@ -3,8 +3,9 @@ from django.shortcuts import render
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
-matplotlib.use("agg")
 from db import user_table
+
+matplotlib.use("agg")
 
 
 def register(request: HttpRequest):

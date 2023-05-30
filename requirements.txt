@@ -5,3 +5,4 @@ redis
 fastapi
 uvicorn
 pandas
+mysql-connector-python
