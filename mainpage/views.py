@@ -11,6 +11,6 @@ def mainpage(request: HttpRequest):
 
     response = render(request, "mainpage/mainpage.html", context=context)
     response.set_cookie("foo", "bar")
-    response.set_cookie("ad", "tristana")
+    response.set_cookie("ad", "gangplank")
     # response.set_cookie("support", "thresh")
     return response
