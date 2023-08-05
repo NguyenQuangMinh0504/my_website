@@ -1,27 +1,31 @@
 <!DOCTYPE html>
+<head>
+    <title>Trang chủ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 {% include 'navbar.html' %}
   
-
-{% load static %}
-<img src="http://saugau.edge.vccloud.vn/static/mainpage/images/chad.jpeg" alt="saugau.edge.vccloud.vn">
-<br>
-<img src="http://cdn.saugau.com/static/mainpage/images/chad.jpeg" alt="cdn.saugau.com">
-<br>
-<img src="https://saugau.sapphirecdn.com/static/mainpage/images/chad.jpeg" alt="saugau.sapphirecdn.com">
-<br>
-
-<h1>Categories</h1>
-<h2>Running: Statistic pace chạy</h2>
-<br>
-<img src="{% static 'mainpage/images/chad.jpeg' %}">
-<br>
-<br>
-<img src="{% static 'mainpage/images/qtv.jpeg' %}">
-<br>
-<br>
-<video width="320" height="240" controls>
-    <source src="sample-mp4-file.mp4" type="video/mp4">
-</video>
-<video width="320" height="240" controls>
-    <source src="foo.mp4" type="video/mp4">
-</video>
+<body>
+    {% load static %}
+    <img src="http://saugau.edge.vccloud.vn/static/mainpage/images/chad.jpeg" alt="saugau.edge.vccloud.vn">
+    <br>
+    <img src="http://cdn.saugau.com/static/mainpage/images/chad.jpeg" alt="cdn.saugau.com">
+    <br>
+    <img src="https://saugau.sapphirecdn.com/static/mainpage/images/chad.jpeg" alt="saugau.sapphirecdn.com">
+    <br>
+    <h1>Categories</h1>
+    <h2>Running: Statistic pace chạy</h2>
+    <br>
+    <img src="{% static 'mainpage/images/chad.jpeg' %}">
+    <br>
+    <br>
+    <img src="{% static 'mainpage/images/qtv.jpeg' %}">
+    <br>
+    <br>
+    <video width="320" height="240" controls>
+        <source src="sample-mp4-file.mp4" type="video/mp4">
+    </video>
+    <video width="320" height="240" controls>
+        <source src="foo.mp4" type="video/mp4">
+    </video>
+</body>
