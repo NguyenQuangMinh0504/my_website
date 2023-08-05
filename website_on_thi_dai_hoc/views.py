@@ -9,19 +9,26 @@ matplotlib.use("agg")
 
 
 def register(request: HttpRequest):
-    return render(request=request, template_name="register.html", context={"title": "Đăng ký"})
+    return render(request=request,
+                  template_name="register.html",
+                  context={"title": "Đăng ký"})
 
 
 def login(request: HttpRequest):
     if request.method == "POST":
         data = request.POST
         for i in user_table:
-            if i["username"] == data["username"] and i["password"] == data["password"]:
+            if i["username"] == data["username"] and \
+               i["password"] == data["password"]:
                 response = HttpResponseRedirect(redirect_to="/")
-                response.set_cookie(key="user_cookie", value="helloworld", max_age=30)
+                response.set_cookie(key="user_cookie",
+                                    value="helloworld",
+                                    max_age=30)
                 return response
         return HttpResponse("hey")
-    return render(request=request, template_name="login.html", context={"title": "Log in"})
+    return render(request=request,
+                  template_name="login.html",
+                  context={"title": "Log in"})
 
 
 def logout(request: HttpRequest):
