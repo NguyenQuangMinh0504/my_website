@@ -1,0 +1,9 @@
+---
+- hosts: website-server
+  name: Reload server
+  become: yes
+  tasks:
+    - name: Reload openresty server
+      ansible.builtin.command:
+        chdir: /home/nguyenquangminh/website_on_thi_dai_hoc/deployment/nginx
+        cmd: openresty -c nginx.conf -p /home/nguyenquangminh/website_on_thi_dai_hoc/deployment/nginx -s reload
