@@ -9,7 +9,7 @@ matplotlib.use("agg")
 
 
 def register(request: HttpRequest):
-    return render(request=request, template_name="register.html", context={})
+    return render(request=request, template_name="register.html", context={"title": "Đăng ký"})
 
 
 def login(request: HttpRequest):
