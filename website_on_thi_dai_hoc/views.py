@@ -21,7 +21,7 @@ def login(request: HttpRequest):
                 response.set_cookie(key="user_cookie", value="helloworld", max_age=30)
                 return response
         return HttpResponse("hey")
-    return render(request=request, template_name="login.html", context={})
+    return render(request=request, template_name="login.html", context={"title": "Log in"})
 
 
 def logout(request: HttpRequest):
