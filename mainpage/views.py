@@ -8,9 +8,6 @@ def mainpage(request: HttpRequest):
     context = {}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
-
+        context["title"] = "Trang chủ"
     response = render(request, "mainpage/mainpage.html", context=context)
-    response.set_cookie("foo", "bar")
-    response.set_cookie("ad", "gangplank")
-    # response.set_cookie("support", "thresh")
     return response
