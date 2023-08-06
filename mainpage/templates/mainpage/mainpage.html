@@ -1,6 +1,5 @@
-{% include 'header.html' %}
-{% include 'navbar.html' %}
-<body>
+{% extends 'base.html' %}
+{% block content %}
     {% load static %}
     <img src="http://saugau.edge.vccloud.vn/static/mainpage/images/chad.jpeg" alt="saugau.edge.vccloud.vn">
     <br>
@@ -23,4 +22,4 @@
     <video width="320" height="240" controls>
         <source src="foo.mp4" type="video/mp4">
     </video>
-</body>
+{% endblock %}
