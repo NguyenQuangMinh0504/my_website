@@ -7,6 +7,7 @@ from mysql import connector
 
 def index(request: HttpRequest):
     context = {}
+    context["title"] = "Chạy bộ"
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
     cnx = connector.connect(user="root", password="password", database="my_data")
@@ -15,7 +16,6 @@ def index(request: HttpRequest):
     context["consecutive_day"] = len(cursor.fetchall())
     cursor.close()
     cnx.close()
-
     return render(request=request,
                   template_name="running/index.html",
                   context=context)
