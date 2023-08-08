@@ -10,7 +10,9 @@ def index(request: HttpRequest):
     context["title"] = "Chạy bộ"
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
-    cnx = connector.connect(user="root", password="password", database="my_data")
+    cnx = connector.connect(user="root",
+                            password="password",
+                            database="my_data")
     cursor = cnx.cursor()
     cursor.execute("SELECT * FROM running_data")
     context["consecutive_day"] = len(cursor.fetchall())

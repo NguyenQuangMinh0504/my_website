@@ -68,3 +68,7 @@ def database(request: HttpRequest):
     plt.tight_layout()
     plt.savefig("./study.png", dpi=600)
     return HttpResponse("hey")
+
+
+def blog(request: HttpRequest):
+    return render(request=request, template_name="blog.html", context={})

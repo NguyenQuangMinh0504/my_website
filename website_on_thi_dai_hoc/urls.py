@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import register, login, logout, database
+from .views import register, login, logout, database, blog
 
 urlpatterns = [
     path("polls/", include("polls.urls")),
@@ -27,4 +27,5 @@ urlpatterns = [
     path("running/", include("running.urls")),
     path("", include("mainpage.urls")),
     path("test/", view=database, name="test"),
+    path(route="blog/", view=blog, name="blog"),
 ]
