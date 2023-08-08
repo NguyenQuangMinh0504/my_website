@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Đây là nơi mình note lại những gì mình lưu ý và viết những gì mình thích</h1>
+<h1>Đây là nơi mình note lưu ý và viết những gì mình thích</h1>
+<br>
+<article class="border">
+    <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' leader %}">Good leader and good worker</a></h2>
+    <p class="mt-2 ms-2">Trích từ The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations</p>
+
+</article>
 {% endblock %}
