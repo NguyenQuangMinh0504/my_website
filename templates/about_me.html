@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<h1>About me</h1>
+<br>
+<div class="row">
+    <div class="col-lg-6"><img src="{% static 'mainpage/images/anh_the.jpg' %}" class="img-fluid"></div>
+    <div class="col-lg-6">
+        <h3>Nguyễn Quang Minh (Sấu Gấu)</h3>
+        Sinh ngày 05/04/2001. Đến từ Điện Biên
+        <br>
+        <br>
+        <h4>Học vấn</h4>
+        <li>K51A1 HSGS (2016-2019)</li>
+        <li>K64 IT-E10 (2019-2023)</li>
+        <br>
+        <h4>Sở thích</h4>
+        <li>Chơi classic tetris</li>
+        <li>Nghe nhạc Linkin Park</li>
+        <li>Chạy bộ</li>
+        <br>
+        <h4>Lĩnh vực quan tâm hiện tại</h4>
+        <li>DevOps</li>
+        <li>Phát triển web</li>
+        <h4> Thông tin liên hệ</h4>
+        <li>Điện thoại: <a href="tel:+84393999504">039 3999 504</a></li>
+        <li>Email: <a href="mailto:ngquangminh05042001@gmail.com">ngquangminh05042001@gmail.com</a></li>
+    </div>
+</div>
+{% endblock %}
