@@ -11,7 +11,7 @@ def index(request: HttpRequest):
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
     cnx = connector.connect(user="root",
-                            password="password",
+                            password="qmqmqm8c3",
                             database="my_data")
     cursor = cnx.cursor()
     cursor.execute("SELECT * FROM running_data")

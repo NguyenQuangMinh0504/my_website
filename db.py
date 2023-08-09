@@ -1,6 +1,6 @@
 from redis import Redis
 from mysql import connector
-cnx = connector.connect(user="root", password="password", database="my_data")
+cnx = connector.connect(user="root", password="qmqmqm8c3", database="my_data")
 cursor = cnx.cursor()
 
 
