@@ -1,8 +1,7 @@
+# Web application
 Django
+# Visualization
 matplotlib
-# Databases
+# Databases connector
 redis
-fastapi
-uvicorn
-pandas
 mysql-connector-python
