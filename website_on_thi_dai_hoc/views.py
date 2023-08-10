@@ -72,7 +72,8 @@ def database(request: HttpRequest):
 
 def blog(request: HttpRequest):
     return render(request=request, template_name="blog.html",
-                  context={"leader": "good-leader"})
+                  context={"leader": "good-leader",
+                           "title": "Blog cá nhân"})
 
 
 def blog_detail(request: HttpRequest, leader: str):
@@ -84,7 +85,7 @@ def blog_detail(request: HttpRequest, leader: str):
 def about_me(request: HttpRequest):
     return render(request=request,
                   template_name="about_me.html",
-                  context={})
+                  context={"title": "About me"})
 
 
 def homepage(request: HttpRequest):
