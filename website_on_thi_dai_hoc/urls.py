@@ -20,7 +20,6 @@ from .views import (register, login, logout, database,
 
 urlpatterns = [
     path("polls/", include("polls.urls")),
-    path("dethi/", include("dethi.urls")),
     path(route="login/", view=login, name="login"),
     path(route="register/", view=register, name="register"),
     path(route="logout/", view=logout, name="logout"),

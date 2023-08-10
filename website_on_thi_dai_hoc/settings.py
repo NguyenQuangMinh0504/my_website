@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
 INSTALLED_APPS = [
     "polls.apps.PollsConfig",
-    "dethi.apps.DethiConfig",
     "running.apps.RunningConfig",
     "mainpage.apps.MainpageConfig",
     'django.contrib.admin',
