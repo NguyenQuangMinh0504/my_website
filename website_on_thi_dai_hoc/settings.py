@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ["saugau.com", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
-    "polls.apps.PollsConfig",
     "running.apps.RunningConfig",
     "mainpage.apps.MainpageConfig",
     'django.contrib.admin',
