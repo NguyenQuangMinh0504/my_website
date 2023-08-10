@@ -11,29 +11,12 @@
             <a class="nav-link" href="/running/">Running</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/statistic/">Statistic</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'blog' %}">Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about-me' %}">About me</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
-          {% if not user_cookie %}
-            <li class="nav-item">
-              <a class="nav-link" href="/login/">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/register/">Register</a>
-            </li> 
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/logout/">Logout</a>
-            </li>
-          {% endif %}
-
       </div>
     </div>
   </nav>
