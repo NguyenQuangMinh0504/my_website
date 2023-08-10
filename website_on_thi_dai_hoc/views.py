@@ -85,3 +85,12 @@ def about_me(request: HttpRequest):
     return render(request=request,
                   template_name="about_me.html",
                   context={})
+
+
+def homepage(request: HttpRequest):
+    context = {}
+    context["title"] = "Trang chủ"
+    if "user_cookie" in request.COOKIES:
+        context["user_cookie"] = request.COOKIES["user_cookie"]
+    response = render(request, "homepage.html", context=context)
+    return response
