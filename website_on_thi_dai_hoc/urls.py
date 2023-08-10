@@ -19,7 +19,6 @@ from .views import (register, login, logout, database,
                     blog, blog_detail, about_me)
 
 urlpatterns = [
-    path("polls/", include("polls.urls")),
     path(route="login/", view=login, name="login"),
     path(route="register/", view=register, name="register"),
     path(route="logout/", view=logout, name="logout"),
