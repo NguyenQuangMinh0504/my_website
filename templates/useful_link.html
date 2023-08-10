@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>
+    Useful stuffs
+</h1>
+
+<br>
+<br>
+
+<h2>Useful Websites</h2>
+Pagespeed Insight (<a href="https://pagespeed.web.dev/">https://pagespeed.web.dev/</a>): Tool đánh giá chỉ ra vấn đề website đang gặp phải.
+<br>
+Google Search Console (<a href="https://search.google.com/">https://search.google.com/</a>): Tool theo dõi performance và ranking website. Xem các url nào đã được đánh index.
+<br>
+Codebeautify highlighter (<a href="https://codebeautify.org/code-highlighter">https://codebeautify.org/code-highlighter</a>): Online syntax highlighter
+<br>
+<br>
+<h2>Useful commands</h2>
+<h5>Script cài MySQL</h5>
+<pre><code id="script_mysql" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">sudo wget https:<span style="color:rgb(136, 136, 136); font-weight:400;">//repo.mysql.com/mysql-apt-config_0.8.26-1_all.deb</span>
+sudo dpkg -i mysql-apt-config_0<span style="color:rgb(136, 0, 0); font-weight:400;">.8</span><span style="color:rgb(136, 0, 0); font-weight:400;">.26</span><span style="color:rgb(136, 0, 0); font-weight:400;">-1</span>_all.deb
+sudo apt-<span style="color:rgb(68, 68, 68); font-weight:700;">get</span> update
+sudo apt-<span style="color:rgb(68, 68, 68); font-weight:700;">get</span> install mysql-server -y
+sudo rm mysql-apt-config_0<span style="color:rgb(136, 0, 0); font-weight:400;">.8</span><span style="color:rgb(136, 0, 0); font-weight:400;">.26</span><span style="color:rgb(136, 0, 0); font-weight:400;">-1</span>_all.deb</code></pre>
+<h5>Remove known key from IP SSH</h5>
+<pre><code id="remove_key_ssh" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">ssh-keygen -R <span style="color:rgb(68, 68, 68); font-weight:400;">&lt;<span style="color:rgb(68, 68, 68); font-weight:700;">host</span>&gt;</span></code>
+</pre>
+<h2>Useful Link</h2>
+<a href="https://dev.mysql.com/doc/refman/8.1/en/">https://dev.mysql.com/doc/refman/8.1/en/</a>: Trang docs MySQL (Search mãi mới ra, ảo thật đấy)
+<br>
+<br>
+<h2>Useful Software</h2>
+Terminus (<a href="https://termius.com/">https://termius.com/</a>): SSH Terminal. Hỗ trợ nhiều OS
+<br>
+<br>
+<strong>Tính năng:</strong>
+<li>Nhóm server lại quản lý</li>
+<li>SSH theo user</li>
+<li>Split screen</li>
+<li>Drag item từ remote server về và ngược lại</li>
+<li>Thay key ssh nếu thấy host thay đổi</li>
+<br>
+<br>
+{% endblock %}

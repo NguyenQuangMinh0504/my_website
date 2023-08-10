@@ -95,3 +95,7 @@ def homepage(request: HttpRequest):
         context["user_cookie"] = request.COOKIES["user_cookie"]
     response = render(request, "homepage.html", context=context)
     return response
+
+
+def useful_link(request: HttpRequest):
+    return render(request, template_name="useful_link.html", context={})
