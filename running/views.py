@@ -8,6 +8,7 @@ from mysql import connector
 def index(request: HttpRequest):
     context = {}
     context["title"] = "Chạy bộ"
+    context["canonical_link"] = "https://saugau.com/running/"
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
     cnx = connector.connect(user="root",

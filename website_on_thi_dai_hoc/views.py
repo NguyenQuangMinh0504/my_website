@@ -21,8 +21,7 @@ def about_me(request: HttpRequest):
 
 
 def homepage(request: HttpRequest):
-    context = {}
-    context["title"] = "Trang chủ"
+    context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
     response = render(request, "homepage.html", context=context)
