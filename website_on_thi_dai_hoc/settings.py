@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
 INSTALLED_APPS = [
     "running.apps.RunningConfig",
-    "mainpage.apps.MainpageConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,3 +124,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ["https://saugau.com"]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
