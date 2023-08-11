@@ -3,5 +3,4 @@ Django
 # Visualization
 matplotlib
 # Databases connector
-redis
 mysql-connector-python
