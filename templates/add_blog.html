@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'add-blog' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Snippet</label>
+        <input type="text" class="form-control" name="snippet">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea class="form-control" name="content" rows="20"></textarea>
+    </div>
+    <br>
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Tạo blog</button>
+    </div>
+</form>
+<br>
+<br>
+<br>
+{% endblock %}

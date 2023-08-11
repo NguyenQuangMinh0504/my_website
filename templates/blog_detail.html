@@ -1,27 +1,4 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>
-    Good leader and good worker
-</h1>
-
-<br>
-<br>
-
-<h2>Worker</h2>
-
-We explicitly state the problem we are seeking to solve, our hypothesis of how our proposed countermeasure will solve it, our methods for testing that hypothesis, our interpretation of the results, and our use of learnings to inform the next iteration.
-<br>
-<br>
-
-<h2>Leader</h2>
-The leader helps coach the person conducting the experiment with questions that may include:
-<li>What was your last step and what happened?</li>
-<li>What did you learn?</li>
-<li>What is your condition now?</li>
-<li>What is your next target condition?</li>
-<li>What obstacle are you working on now?</li>
-<li>What is your next step?</li>
-<li>What is your expected outcome?</li>
-<li>When can we check?</li>
-
+{{ detail|safe }}
 {% endblock %}
