@@ -1,5 +1,6 @@
 --- 
 - hosts: website-server
+  become: yes
   name: Synchronize code using github
   tasks:
     - name: Pulling code from github
