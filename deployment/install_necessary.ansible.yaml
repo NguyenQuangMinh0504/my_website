@@ -15,6 +15,14 @@
       ansible.builtin.apt:
         name:
           - python3-venv
+    - name: Install python pip module
+      ansible.builtin.apt:
+        name:
+          - python3-pip
+    - name: Install virtual env through pip
+      ansible.builtin.pip:
+        name:
+          - virtualenv
     - name: Add openresty GPG key
       ansible.builtin.apt_key:
         url: https://openresty.org/package/pubkey.gpg
