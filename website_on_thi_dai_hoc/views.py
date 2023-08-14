@@ -1,6 +1,8 @@
-from django.http import HttpRequest, Http404
+from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
-from db import get_blog_detail, add_blog, get_all_blog
+from django.urls import reverse
+from db import (get_blog_detail, add_blog, get_all_blog,
+                get_all_comment, add_comment)
 
 
 def add_blog_view(request: HttpRequest):
@@ -26,7 +28,10 @@ def blog_detail(request: HttpRequest, title: str):
         raise Http404
     return render(request=request,
                   template_name="blog_detail.html",
-                  context={"detail": blog_data["content"]})
+                  context={"detail": blog_data["content"],
+                           "id": blog_data["id"],
+                           "title": blog_data["title"],
+                           "comments": get_all_comment(blog_data["id"])})
 
 
 def about_me(request: HttpRequest):
@@ -41,3 +46,11 @@ def homepage(request: HttpRequest):
         context["user_cookie"] = request.COOKIES["user_cookie"]
     response = render(request, "homepage.html", context=context)
     return response
+
+
+def add_comment_view(request: HttpRequest, blog_id):
+    if request.method == "POST":
+        add_comment(blog_id=blog_id, content=request.POST["content"])
+    return HttpResponseRedirect(reverse(viewname="blog-detail",
+                                        args=[request.POST["title"]])
+                                )

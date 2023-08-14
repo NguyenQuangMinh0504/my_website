@@ -48,3 +48,30 @@ def get_all_blog():
     cursor.close()
     cnx.close()
     return result
+
+
+def get_all_comment(blog_id):
+    cnx = connector.connect(user="root",
+                            password="qmqmqm8c3",
+                            database="blog"
+                            )
+    cursor = cnx.cursor(dictionary=True)
+    cursor.execute(f"SELECT * FROM comment WHERE blog_id = {blog_id}")
+    result = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return result
+
+
+def add_comment(blog_id, content):
+    cnx = connector.connect(user="root",
+                            password="qmqmqm8c3",
+                            database="blog"
+                            )
+    cursor = cnx.cursor(dictionary=True)
+    cursor.execute(
+        f"""INSERT INTO comment (content, blog_id)
+         VALUES('{content}', {blog_id})""")
+    cnx.commit()
+    cursor.close()
+    cnx.close()
