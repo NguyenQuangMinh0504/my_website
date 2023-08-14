@@ -4,8 +4,8 @@
   tasks:
     - name: Pulling code from github
       ansible.builtin.git:
-        repo: https://NguyenQuangMinh0504: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@github.com/NguyenQuangMinh0504/website_on_thi_dai_hoc.git
-        dest: /home/nguyenquangminh/website_on_thi_dai_hoc
+        repo: https://github.com/NguyenQuangMinh0504/my_website
+        dest: /opt/my_website
         update: yes
         clone: yes
         force: yes

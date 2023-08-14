@@ -5,5 +5,5 @@
   tasks:
     - name: Reload openresty server
       ansible.builtin.command:
-        chdir: /home/nguyenquangminh/website_on_thi_dai_hoc/deployment/nginx
-        cmd: openresty -c nginx.conf -p /home/nguyenquangminh/website_on_thi_dai_hoc/deployment/nginx -s reload
+        chdir: /opt/my_website/web_server
+        cmd: openresty -c nginx.conf -p /hopt/my_website/web_server
