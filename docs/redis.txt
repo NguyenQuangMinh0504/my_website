@@ -1,8 +1,0 @@
-Cấu trúc lưu database redis
-
-{"05/23/23": 
-    {
-    time: 45
-    duration: 5.73
-    }
-}
