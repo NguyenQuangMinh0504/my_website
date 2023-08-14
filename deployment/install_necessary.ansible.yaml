@@ -15,11 +15,6 @@
       ansible.builtin.apt:
         name:
           - python3-venv
-    - name: Install redis server
-      ansible.builtin.apt:
-        name:
-          - redis-server
-
     - name: Add openresty GPG key
       ansible.builtin.apt_key:
         url: https://openresty.org/package/pubkey.gpg
