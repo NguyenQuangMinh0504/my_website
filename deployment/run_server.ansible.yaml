@@ -7,6 +7,10 @@
       ansible.builtin.service:
         name: openresty
         state: stopped
+    - name: Create directory for logs
+      ansible.builtin.file:
+        path: /var/log/my_website
+        state: "directory"
     - name: Running openresty server
       ansible.builtin.command:
         chdir: /opt/my_website/web_server
