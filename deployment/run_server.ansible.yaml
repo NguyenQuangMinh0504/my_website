@@ -3,6 +3,10 @@
   name: Running server
   become: yes
   tasks:
+    - name: Stop Openresty service
+      ansible.builtin.service:
+        name: openresty
+        state: stopped
     - name: Running openresty server
       ansible.builtin.command:
         chdir: /opt/my_website/web_server
