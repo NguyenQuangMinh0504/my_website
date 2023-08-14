@@ -13,31 +13,41 @@ def add_blog_view(request: HttpRequest):
                  snippet=data["snippet"],
                  content=data["content"],
                  )
-    return render(request=request, template_name="add_blog.html", context={})
+    return render(request=request, template_name="add_blog.html", context={
+        "title": "Tạo blog",
+        "canonical_links": "https://saugau.com/add-blog/"
+    })
 
 
 def blog(request: HttpRequest):
     return render(request=request,
                   template_name="blog.html",
-                  context={"blogs": get_all_blog()})
+                  context={"blogs": get_all_blog(),
+                           "title": "Blog cá nhân",
+                           "canonical_link": "https://saugau.com/blog/"})
 
 
 def blog_detail(request: HttpRequest, title: str):
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
         raise Http404
-    return render(request=request,
-                  template_name="blog_detail.html",
-                  context={"detail": blog_data["content"],
-                           "id": blog_data["id"],
-                           "title": blog_data["title"],
-                           "comments": get_all_comment(blog_data["id"])})
+    return render(
+        request=request,
+        template_name="blog_detail.html",
+        context={
+            "detail": blog_data["content"],
+            "id": blog_data["id"],
+            "title": blog_data["title"],
+            "comments": get_all_comment(blog_data["id"],),
+            "canonical_link": f"https://saugau.com/about-me/blog/{title}/"}
+            )
 
 
 def about_me(request: HttpRequest):
     return render(request=request,
                   template_name="about_me.html",
-                  context={"title": "About me"})
+                  context={"title": "About me",
+                           "canonical_link": "https://saugau.com/about-me/"})
 
 
 def homepage(request: HttpRequest):
