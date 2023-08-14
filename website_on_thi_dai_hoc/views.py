@@ -2,7 +2,7 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
-                get_all_comment, add_comment)
+                get_all_comment, add_comment, get_running_data)
 
 
 def add_blog_view(request: HttpRequest):
@@ -64,3 +64,13 @@ def add_comment_view(request: HttpRequest, blog_id):
     return HttpResponseRedirect(reverse(viewname="blog-detail",
                                         args=[request.POST["title"]])
                                 )
+
+
+def running_view(request: HttpRequest):
+    context = {}
+    context["title"] = "Chạy bộ"
+    context["canonical_link"] = "https://saugau.com/running/"
+    context["consecutive_day"] = len(get_running_data())
+    return render(request=request,
+                  template_name="running.html",
+                  context=context)

@@ -1,6 +1,4 @@
 from mysql import connector
-cnx = connector.connect(user="root", password="qmqmqm8c3", database="my_data")
-cursor = cnx.cursor()
 
 
 def get_blog_detail(title):
@@ -75,3 +73,15 @@ def add_comment(blog_id, content):
     cnx.commit()
     cursor.close()
     cnx.close()
+
+
+def get_running_data():
+    cnx = connector.connect(user="root",
+                            password="qmqmqm8c3",
+                            database="my_data")
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM running_data")
+    result = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return result

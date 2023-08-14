@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ["saugau.com", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
-    "running.apps.RunningConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,8 +115,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATIC_URL = 'static/'
-STATIC_URL = 'https://saugau.cdn.vccloud.vn/static/'
+STATIC_URL = 'static/'
+# STATIC_URL = 'https://saugau.cdn.vccloud.vn/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
