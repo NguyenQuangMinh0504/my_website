@@ -88,3 +88,7 @@ def running_view(request: HttpRequest):
     return render(request=request,
                   template_name="running.html",
                   context=context)
+
+
+def test_view(request: HttpRequest):
+    return render(request=request, template_name="test.html", context={})
