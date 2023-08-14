@@ -85,3 +85,20 @@ def get_running_data():
     cursor.close()
     cnx.close()
     return result
+
+
+def edit_blog(old_title, new_title, snippet, content):
+    cnx = connector.connect(user="root",
+                            password="qmqmqm8c3",
+                            database="blog"
+                            )
+    cursor = cnx.cursor(dictionary=True)
+    cursor.execute(
+        f"""
+        UPDATE blog SET title = '{new_title}', snippet = '{snippet}',
+         content = '{content}' WHERE title = '{old_title}';
+        """
+        )
+    cnx.commit()
+    cursor.close()
+    cnx.close()

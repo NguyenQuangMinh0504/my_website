@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import (blog, blog_detail, about_me, homepage,
-                    add_blog_view, add_comment_view, running_view)
+                    add_blog_view, add_comment_view, running_view,
+                    edit_blog_view)
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
@@ -28,4 +29,6 @@ urlpatterns = [
     path(route="blog/<str:title>/", view=blog_detail, name="blog-detail"),
     path(route="blog/add-comment/<int:blog_id>/",
          view=add_comment_view, name="add-comment"),
+    path(route="edit-blog/<str:title>/", view=edit_blog_view,
+         name="edit-blog"),
 ]

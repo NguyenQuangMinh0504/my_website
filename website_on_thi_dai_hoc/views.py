@@ -2,7 +2,7 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
-                get_all_comment, add_comment, get_running_data)
+                get_all_comment, add_comment, get_running_data, edit_blog)
 
 
 def add_blog_view(request: HttpRequest):
@@ -41,6 +41,20 @@ def blog_detail(request: HttpRequest, title: str):
             "comments": get_all_comment(blog_data["id"],),
             "canonical_link": f"https://saugau.com/blog/{title}/"}
             )
+
+
+def edit_blog_view(request: HttpRequest, title: str):
+    title = title.replace("-", " ")
+    blog_data = get_blog_detail(title=title.replace("-", " "))
+    if blog_data is None:
+        raise Http404
+    if request.method == "POST":
+        data = request.POST
+        edit_blog(old_title=title, new_title=data["title"],
+                  snippet=data["snippet"], content=data["content"])
+        return HttpResponseRedirect(reverse(viewname="blog"))
+    return render(request=request, template_name="edit_blog.html",
+                  context=blog_data)
 
 
 def about_me(request: HttpRequest):
