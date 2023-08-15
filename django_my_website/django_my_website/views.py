@@ -2,7 +2,7 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
-                get_all_comment, add_comment, get_running_data, edit_blog)
+                get_all_comment, add_comment, get_running_data, edit_blog, increment_view_counter)
 
 
 def add_blog_view(request: HttpRequest):
@@ -28,7 +28,9 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
+
     blog_data = get_blog_detail(title=title.replace("-", " "))
+    increment_view_counter(title=title.replace("-", " "))
     if blog_data is None:
         raise Http404
     return render(
@@ -38,6 +40,7 @@ def blog_detail(request: HttpRequest, title: str):
             "detail": blog_data["content"],
             "id": blog_data["id"],
             "title": blog_data["title"],
+            "total_view": blog_data["total_view"],
             "comments": get_all_comment(blog_data["id"],),
             "canonical_link": f"https://saugau.com/blog/{title}/"}
             )

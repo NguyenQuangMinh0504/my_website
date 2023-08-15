@@ -102,3 +102,14 @@ def edit_blog(old_title, new_title, snippet, content):
     cnx.commit()
     cursor.close()
     cnx.close()
+
+
+def increment_view_counter(title: str):
+    cnx = connector.connect(user="root",
+                            password="qmqmqm8c3",
+                            database="blog")
+    cursor = cnx.cursor(dictionary=True)
+    cursor.execute(f"UPDATE blog SET total_view = total_view + 1 WHERE title = '{title}'")
+    cnx.commit()
+    cursor.close()
+    cnx.close()
