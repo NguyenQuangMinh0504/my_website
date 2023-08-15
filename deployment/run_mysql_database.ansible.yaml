@@ -1,0 +1,13 @@
+---
+- hosts: website-server
+  become: yes
+  tasks: 
+    - name: Create mysql database
+      community.mysql.mysql_db:
+        name:
+          - blog
+          - my_data
+        state: present
+        login_user: root
+        login_password: "qmqmqm8c3"
+
