@@ -4,3 +4,5 @@ Django
 matplotlib
 # Databases connector
 mysql-connector-python
+# wsgi web http server
+gunicorn
