@@ -1,0 +1,14 @@
+---
+- hosts: website-server
+  become: yes
+  tasks: 
+    - name: Create the virtual environment 
+      ansible.builtin.pip:
+        requirements: /opt/my_website/django_my_website/requirements.txt
+        virtualenv: /opt/my_website_venv
+        virtualenv_python: python3
+    - name: Run gunicorn HTTP server
+      community.general.gunicorn:
+        app: "django_my_website.wsgi"
+        chdir: /opt/my_website/django_my_website
+        venv: /opt/my_website_venv
