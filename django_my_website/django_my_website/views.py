@@ -28,9 +28,8 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
-
-    blog_data = get_blog_detail(title=title.replace("-", " "))
     increment_view_counter(title=title.replace("-", " "))
+    blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
         raise Http404
     return render(
