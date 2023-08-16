@@ -3,7 +3,9 @@
 {% block content %}
 {{ detail|safe }}
 <br>
-<img src="{% static 'images/statistic_icon.png' %}" style="position: relative; bottom: 2px;"class="img-fluid"> 
+Ngày đăng: {{ date }} 
+<br>
+<img src="{% static 'images/statistic_icon.png' %}" style="position: relative; bottom: 2px;"class="img-fluid">
 {{ total_view }} total views
 <hr>
 <h2>Comment</h2>

@@ -40,6 +40,7 @@ def blog_detail(request: HttpRequest, title: str):
             "id": blog_data["id"],
             "title": blog_data["title"],
             "total_view": blog_data["total_view"],
+            "date": blog_data["date"].strftime("%m/%d/%Y"),
             "comments": get_all_comment(blog_data["id"],),
             "canonical_link": f"https://saugau.com/blog/{title}/"}
             )
