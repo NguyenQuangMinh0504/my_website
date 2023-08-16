@@ -11,4 +11,6 @@ venv
 # *.log
 # Redis backup
 dump.rdb
+# Test file
+django_my_website/templates/test.html
 
