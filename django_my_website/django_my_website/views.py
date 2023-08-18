@@ -2,7 +2,8 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
-                get_all_comment, add_comment, get_running_data, edit_blog, increment_view_counter)
+                get_all_comment, add_comment, get_running_data, edit_blog,
+                increment_view_counter)
 
 
 def add_blog_view(request: HttpRequest):
@@ -87,7 +88,13 @@ def running_view(request: HttpRequest):
     context = {}
     context["title"] = "Chạy bộ"
     context["canonical_link"] = "https://saugau.com/running/"
-    context["consecutive_day"] = len(get_running_data())
+    counter = 0
+    for row in reversed(get_running_data()):
+        if row["distance"] > 0:
+            counter += 1
+        else:
+            break
+    context["consecutive_day"] = counter
     return render(request=request,
                   template_name="running.html",
                   context=context)
