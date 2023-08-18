@@ -7,4 +7,4 @@ mysql-connector-python
 # wsgi web http server
 gunicorn
 # for loading environment variable from .env
-python-dotenv
+dotenv
