@@ -1,0 +1,23 @@
+
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "8000:8000"
+    links:
+      - "mysql"
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=qmqmqm8c3
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+  
