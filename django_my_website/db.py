@@ -1,115 +1,69 @@
 from mysql import connector
+from config import DB_HOST, DB_PASSWORD
+
+
+def execute(database: str, query: str, fetch: str):
+    cnx = connector.connect(user="root",
+                            password=DB_PASSWORD,
+                            database=database,
+                            host=DB_HOST)
+    cnx.autocommit = True
+    cursor = cnx.cursor(dictionary=True)
+    cursor.execute(query)
+    result = None
+    if fetch == "all":
+        result = cursor.fetchall()
+    elif fetch == "one":
+        result = cursor.fetchone()
+    cursor.close()
+    cnx.close()
+    return result
 
 
 def get_blog_detail(title):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(
-        f"SELECT * FROM blog WHERE title = '{title}'"
-        )
-    result = cursor.fetchone()
-    cursor.close()
-    cnx.close()
-    return result
+    return execute(database="blog",
+                   query=f"SELECT * FROM blog WHERE title = '{title}'",
+                   fetch="one")
 
 
 def add_blog(title, snippet, content):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(
-        f"""
-        INSERT INTO blog (title, snippet, content)
-         VALUES ('{title}', '{snippet}', '{content}')
-        """
-        )
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+    return execute(database="blog",
+                   query=f"""INSERT INTO blog (title, snippet, content)
+                    VALUES ('{title}', '{snippet}', '{content}')""",
+                   fetch=None)
 
 
 def get_all_blog():
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(
-        "SELECT * FROM blog"
-    )
-    result = cursor.fetchall()
-    cursor.close()
-    cnx.close()
-    return result
+    return execute(database="blog", query="SELECT * FROM blog", fetch="all")
 
 
 def get_all_comment(blog_id):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(f"SELECT * FROM comment WHERE blog_id = {blog_id}")
-    result = cursor.fetchall()
-    cursor.close()
-    cnx.close()
-    return result
+    return execute(database="blog",
+                   query=f"SELECT * FROM comment WHERE blog_id = {blog_id}",
+                   fetch="all")
 
 
 def add_comment(blog_id, content):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(
-        f"""INSERT INTO comment (content, blog_id)
-         VALUES('{content}', {blog_id})""")
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+    return execute(database="blog",
+                   query=f"""INSERT INTO comment (content, blog_id)
+                    VALUES('{content}', {blog_id})""",
+                   fetch=None)
 
 
 def get_running_data():
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="my_data")
-    cursor = cnx.cursor()
-    cursor.execute("SELECT * FROM running_data")
-    result = cursor.fetchall()
-    cursor.close()
-    cnx.close()
-    return result
+    return execute(database="my_data", query="SELECT * FROM running_data",
+                   fetch="all")
 
 
 def edit_blog(old_title, new_title, snippet, content):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog"
-                            )
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(
-        f"""
-        UPDATE blog SET title = '{new_title}', snippet = '{snippet}',
-         content = '{content}' WHERE title = '{old_title}';
-        """
-        )
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+    return execute(database="blog",
+                   query=f""" UPDATE blog SET title = '{new_title}',
+                   snippet = '{snippet}', content = '{content}'
+                   WHERE title = '{old_title}';""",
+                   fetch=None)
 
 
 def increment_view_counter(title: str):
-    cnx = connector.connect(user="root",
-                            password="qmqmqm8c3",
-                            database="blog")
-    cursor = cnx.cursor(dictionary=True)
-    cursor.execute(f"UPDATE blog SET total_view = total_view + 1 WHERE title = '{title}'")
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+    return execute(database="blog",
+                   query=f"""UPDATE blog SET total_view = total_view + 1
+                   WHERE title = '{title}'""", fetch=None)
