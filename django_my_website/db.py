@@ -51,7 +51,8 @@ def add_comment(blog_id, content):
 
 
 def get_running_data():
-    return execute(database="my_data", query="SELECT * FROM running_data",
+    return execute(database="my_data",
+                   query="SELECT * FROM running_data ORDER BY day",
                    fetch="all")
 
 
