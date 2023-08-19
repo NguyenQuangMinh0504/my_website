@@ -12,7 +12,9 @@ services:
     extra_hosts:
     - "host.docker.internal:host-gateway"
   mysql:
-    image: mysql:latest
+    build:
+      context: databases
+      dockerfile: Dockerfile
     ports:
       - 3307:3306
     environment:
