@@ -7,3 +7,15 @@
       ansible.builtin.command:
         chdir: /opt/my_website/web_server
         cmd: openresty -c nginx.conf -p /opt/my_website/web_server -s reload
+    - name: Find all process using port 8000
+      ansible.builtin.shell: "lsof -t -i:8000"
+      register: processes_on_port
+    - name: Stop all processes running on port 8000
+      ansible.builtin.shell: "kill -9 {{ item }}"
+      with_items: "{{ processes_on_port.stdout_lines }}"
+      ignore_errors: yes
+    - name: Reload gunicorn server
+      community.general.gunicorn:
+        app: "django_my_website.wsgi"
+        chdir: /opt/my_website/django_my_website
+        venv: /opt/my_website_venv
