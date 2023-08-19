@@ -101,4 +101,5 @@ def running_view(request: HttpRequest):
 
 
 def test_view(request: HttpRequest):
-    return render(request=request, template_name="test.html", context={})
+    return HttpResponseRedirect(reverse(viewname="home"))
+    # return render(request=request, template_name="test.html", context={})
