@@ -8,3 +8,5 @@ mysql-connector-python
 gunicorn
 # for loading environment variable from .env
 python-dotenv
+# Prometheus
+prometheus-client
