@@ -4,8 +4,8 @@
   tasks: 
     - name: Copy log analyze supervisor config file from git repo to supervisor folder.
       ansible.builtin.copy:
-        src: /opt/my_website/log_analyzer/log_analyze.conf
-        dest: /etc/supervisor/conf.d/log_analyze.conf
+        src: /opt/my_website/log_analyzer/log_analyzer.conf
+        dest: /etc/supervisor/conf.d/log_analyzer.conf
         remote_src: true
     
     - name: Reread supervisor config
