@@ -27,6 +27,10 @@
       ansible.builtin.pip:
         name:
           - virtualenv
+    - name: Install supervisor for manage processeses
+      ansible.builtin.apt:
+        name:
+          - supervisor
     - name: Add openresty GPG key
       ansible.builtin.apt_key:
         url: https://openresty.org/package/pubkey.gpg
