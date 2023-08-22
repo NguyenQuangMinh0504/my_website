@@ -100,5 +100,14 @@ def running_view(request: HttpRequest):
                   context=context)
 
 
+def website_traffic_view(request: HttpRequest):
+    context = {}
+    context["title"] = "Website traffic"
+    context["canonical_link"] = "https://saugau.com/website-traffic/"
+    context["grafana-link"] = "foo"
+    return render(request=request, template_name="website_traffic.html",
+                  context=context)
+
+
 def test_view(request: HttpRequest):
     return render(request=request, template_name="test.html", context={})
