@@ -31,6 +31,10 @@
       ansible.builtin.apt:
         name:
           - supervisor
+    - name: Install prometheus
+      ansible.builtin.apt:
+        name:
+          - prometheus
     - name: Add openresty GPG key
       ansible.builtin.apt_key:
         url: https://openresty.org/package/pubkey.gpg
