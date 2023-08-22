@@ -1,0 +1,29 @@
+---
+- hosts: website-server
+  become: yes
+  name: Setup grafana
+  tasks:
+    - name: Install necessary package
+      ansible.builtin.apt:
+        name:
+          - adduser
+          - libfontconfig1
+    - name: Create grafana folder
+      ansible.builtin.file:
+        path: /opt/grafana
+        state: directory
+    - name: Install deb package
+      ansible.builtin.get_url:
+        url: https://dl.grafana.com/enterprise/release/grafana-enterprise_10.0.3_amd64.deb
+        dest: /opt/grafana
+    - name: Install grafana via deb
+      ansible.builtin.command: 
+        cmd: dpkg -i grafana-enterprise_10.0.3_amd64.deb
+        chdir: /opt/grafana
+    - name: Start grafana server
+      ansible.builtin.systemd:
+        name: grafana-server
+        state: started
+    
+
+
