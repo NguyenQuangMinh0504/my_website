@@ -12,5 +12,5 @@ venv
 # Redis backup
 dump.rdb
 # Test file
-django_my_website/templates/test.html
+# django_my_website/templates/test.html
 
