@@ -4,6 +4,7 @@ from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
                 increment_view_counter)
+from config import WEBSITE_TRAFFIC_PANEL_LINK
 
 
 def add_blog_view(request: HttpRequest):
@@ -104,7 +105,7 @@ def website_traffic_view(request: HttpRequest):
     context = {}
     context["title"] = "Website traffic"
     context["canonical_link"] = "https://saugau.com/website-traffic/"
-    context["grafana-link"] = "foo"
+    context["website_traffic_link"] = WEBSITE_TRAFFIC_PANEL_LINK
     return render(request=request, template_name="website_traffic.html",
                   context=context)
 
