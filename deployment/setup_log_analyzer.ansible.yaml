@@ -19,3 +19,13 @@
     - name: Reload supervisorctl
       ansible.builtin.command:
         cmd: supervisorctl reload
+
+    - name: Copy file prometheus config
+      ansible.builtin.copy:
+        src: /opt/my_website/log_analyzer/prometheus.yml
+        dest: /etc/prometheus/
+        remote_src: true
+    - name: Reload prometheus
+      ansible.builtin.systemd:
+        name: prometheus.service
+        state: reloaded
