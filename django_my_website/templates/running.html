@@ -1,15 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-  <br>
-  {% load static %}
-  <h1>Số ngày chạy liên tiếp: {{consecutive_day }}</h1>
-  <br>
-  <!-- <h2>7 ngày gần nhất</h2> -->
-  <!-- <label class="switch">
-      <input type="checkbox" id="toggle-button">
-      <span class="slider"></span>
-  </label> -->
-  <style>
+<br>
+{% load static %}
+<h1>Số ngày chạy liên tiếp: {{consecutive_day }}</h1>
+<br>
+<h2>7 ngày gần nhất</h2>
+<label class="switch">
+    <input type="checkbox" id="toggle-button">
+    <span class="slider"></span>
+</label>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1>Quãng đường chạy</h1>
+      <img src="{% static 'images/distance.webp' %}" class="img-fluid" id="distance">
+    </div>
+    <div class="col-lg-6">
+      <h1>Thời gian chạy</h1>
+      <img src="{% static 'images/duration.webp' %}" class="img-fluid" id="duration">
+    </div>
+    <div class="col-lg-6">
+      <h1>Pace chạy</h1>
+      <img src="{% static 'images/pace.webp' %}" class="img-fluid" id="pace">
+    </div>
+  </div>
+</div>
+<style>
   .switch {
     position: relative;
     display: inline-block;
@@ -70,11 +86,23 @@
     border-radius: 50%;
   }
   </style>
+<script>
+  const toggleButton = document.getElementById("toggle-button")
+  toggleButton.addEventListener("change", () => {
+    const distanceImg = document.getElementById("distance")
+    const durationImg = document.getElementById("duration")
+    const paceImg = document.getElementById("pace")
+    if (toggleButton.checked) {
+      distanceImg.setAttribute("src", "{% static 'images/distance-7-days.webp' %}")
+      durationImg.setAttribute("src", "{% static 'images/duration-7-days.webp' %}")
+      paceImg.setAttribute("src", "{% static 'images/pace-7-days.webp' %}")
+    }
+    else {
+      distanceImg.setAttribute("src", "{% static 'images/distance.webp' %}")
+      durationImg.setAttribute("src", "{% static 'images/duration.webp' %}")
+      paceImg.setAttribute("src", "{% static 'images/pace.webp' %}")
+    }
 
-  <h1>Biểu đồ chạy</h1>
-  <img src="{% static 'images/distance.webp' %}" class="img-fluid">
-  <h1>Thời gian</h1>
-  <img src="{% static 'images/duration.webp' %}" class="img-fluid">
-  <h1>Pace</h1>
-  <img src="{% static 'images/pace.webp' %}" class="img-fluid">
+  }) 
+</script>
 {% endblock %}

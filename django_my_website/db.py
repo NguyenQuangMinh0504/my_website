@@ -50,7 +50,12 @@ def add_comment(blog_id, content):
                    fetch=None)
 
 
-def get_running_data():
+def get_running_data(last_7_days=False):
+    if last_7_days is True:
+        return execute(
+            database="my_data",
+            query="SELECT * FROM running_data ORDER BY day DESC LIMIT 7",
+            fetch="all")
     return execute(database="my_data",
                    query="SELECT * FROM running_data ORDER BY day",
                    fetch="all")
