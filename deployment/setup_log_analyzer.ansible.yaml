@@ -1,5 +1,5 @@
 ---
-- hosts: website-server
+- hosts: website_server
   become: True
   tasks: 
     - name: Copy log analyze supervisor config file from git repo to supervisor folder.
