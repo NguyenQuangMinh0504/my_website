@@ -4,9 +4,7 @@ import time
 import os
 import dotenv
 dotenv.load_dotenv("../django_my_website/.env")
-ACCESS_LOG_PATH = os.getenv("ACCESS_LOG_PATH_DEV") \
-    if os.getenv("DEV_ENV") == "True" else os.getenv("ACCESS_LOG_PATH")
-
+ACCESS_LOG_PATH = os.getenv("ACCESS_LOG_PATH")
 log_format = r'(?P<remote_addr>\S+) \[(?P<time_iso8601>.*?)\] ' \
     r'(?P<http_host>.*) "(?P<request>.*)" (?P<status>\d+)' \
     r'(?P<body_bytes_sent>\d+) (?P<http_referer>.*) "(?P<http_user_agent>.*)"'
