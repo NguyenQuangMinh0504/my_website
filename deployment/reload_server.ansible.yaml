@@ -6,7 +6,7 @@
     - name: Reload openresty server
       ansible.builtin.command:
         chdir: /opt/my_website/web_server
-        cmd: openresty -c conf.d/nginx.conf -p /opt/my_website/web_server -s reload
+        cmd: openresty -c nginx.conf -p /opt/my_website/web_server -s reload
     - name: Find all process using port 8000
       ansible.builtin.shell: "lsof -t -i:8000"
       register: processes_on_port

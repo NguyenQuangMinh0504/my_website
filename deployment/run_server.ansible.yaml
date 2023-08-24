@@ -14,4 +14,4 @@
     - name: Running openresty server
       ansible.builtin.command:
         chdir: /opt/my_website/web_server
-        cmd: openresty -c conf.d/nginx.conf -p /opt/my_website/web_server
+        cmd: openresty -c nginx.conf -p /opt/my_website/web_server
