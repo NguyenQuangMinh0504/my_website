@@ -45,3 +45,7 @@
       ansible.builtin.apt:
         name:
           - openresty
+    - name: Add Docker host to /etc/hosts
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: 127.0.0.1 host.docker.internal
