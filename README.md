@@ -4,6 +4,7 @@
 - <strong>django_my_website</strong> Chứa code website viết bằng framework Django, tạo bằng lệnh `django-admin start project django_my_website`
 - web_server: Chứa file config NGINX webserver và thư mục certs website.
 - databases: Chứa các file backup database và ảnh cấu trúc db.
+- log_analyzer: Export metrics đọc từ access log NGINX. Dùng để plot website traffic dùng grafana + prometheus.
 ## 2. Cấu trúc website
 NGINX/Openresty -> Gunicorn -> Django web application
 ## 3. Chạy development server
