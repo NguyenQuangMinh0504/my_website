@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
-                increment_view_counter, get_study_data)
+                increment_view_counter)
 from config import WEBSITE_TRAFFIC_PANEL_LINK
 
 
