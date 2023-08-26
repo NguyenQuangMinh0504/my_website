@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from .views import (blog, blog_detail, about_me, homepage,
                     add_blog_view, add_comment_view, running_view,
-                    edit_blog_view, website_traffic_view, test_view)
+                    edit_blog_view, website_traffic_view, test_view,
+                    statistics_view)
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
@@ -35,4 +36,5 @@ urlpatterns = [
     path(route="website-traffic/", view=website_traffic_view,
          name="website-traffic"),
     path(route="test/", view=test_view, name="test"),
+    path(route="statistics/", view=statistics_view, name="statistics"),
 ]
