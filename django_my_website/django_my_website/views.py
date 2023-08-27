@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
-                increment_view_counter)
+                increment_view_counter, add_running_data)
 from config import WEBSITE_TRAFFIC_PANEL_LINK
 
 
@@ -86,6 +86,12 @@ def add_comment_view(request: HttpRequest, blog_id):
 
 
 def running_view(request: HttpRequest):
+    if request.method == "POST":
+        data = request.POST
+        add_running_data(date=data["date"],
+                         duration=data["duration"],
+                         distance=data["distance"])
+        return HttpResponseRedirect(reverse(viewname="running"))
     context = {}
     context["title"] = "Chạy bộ"
     context["canonical_link"] = "https://saugau.com/running/"
@@ -115,6 +121,14 @@ def statistics_view(request: HttpRequest):
     context["title"] = "Statistics"
     context["canonical_link"] = "https://saugau.com/statistics/"
     return render(request=request, template_name="statistics.html",
+                  context=context)
+
+
+def add_data_view(request: HttpRequest):
+    context = {}
+    context["title"] = "Add data"
+    context["canonical_link"] = "https://saugau.com/add-data/"
+    return render(request=request, template_name="add_data.html",
                   context=context)
 
 

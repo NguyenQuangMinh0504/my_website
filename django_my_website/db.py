@@ -69,6 +69,14 @@ def edit_blog(old_title, new_title, snippet, content):
                    fetch=None)
 
 
+def add_running_data(date: str, duration: int, distance: float):
+    return execute(database="my_data",
+                   query=f"""INSERT INTO running_data
+                    VALUES('{date}', {duration}, {distance})""",
+                   fetch=None
+                   )
+
+
 def increment_view_counter(title: str):
     return execute(database="blog",
                    query=f"""UPDATE blog SET total_view = total_view + 1
