@@ -77,6 +77,14 @@ def add_running_data(date: str, duration: int, distance: float):
                    )
 
 
+def add_other_data(date: str, study_time: int, play_time: int):
+    return execute(database="my_data",
+                   query=f"""INSERT INTO daily_activities
+                    VALUES('{date}', {study_time}, {play_time})""",
+                   fetch=None
+                   )
+
+
 def increment_view_counter(title: str):
     return execute(database="blog",
                    query=f"""UPDATE blog SET total_view = total_view + 1

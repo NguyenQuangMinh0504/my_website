@@ -1,31 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
 <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
-    <h1>Running</h1>
-
     <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
-            <form action="{% url 'running' %}" method="post">
-                {% csrf_token %}        
-                <div class="mb-3">
-                    <label class="form-label">Date</label>
-                    <input type="date" class="form-control" name="date">
+            <div class="col-lg-6">
+                <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                    <h1>Running</h1>
+                    <form action="{% url 'running' %}" method="post">
+                        {% csrf_token %}        
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Duration</label>
+                            <input type="number" class="form-control" name="duration" step="15">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Distance</label>
+                            <input type="number" class="form-control" name="distance" step="0.01">
+                        </div>
+                        <br>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Thêm dữ liệu</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Duration</label>
-                    <input type="number" class="form-control" name="duration" step="15">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Distance</label>
-                    <input type="number" class="form-control" name="distance" step="0.01">
-                </div>
-                <br>
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Thêm dữ liệu</button>
-                </div>
-            </form>
-          </div>
+            </div>
+            <div class="col-lg-6">
+                    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                        <h1>Other</h1>
+                        <form action="{% url 'statistics' %}" method="post">
+                            {% csrf_token %}        
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" name="date">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Study time (minutes)</label>
+                                <input type="number" class="form-control" name="study_time" step="15">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Play time (minutes)</label>
+                                <input type="number" class="form-control" name="play_time" step="15">
+                            </div>
+                            <br>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Thêm dữ liệu</button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
         </div>
     </div>
 

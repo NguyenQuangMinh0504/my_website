@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
-                increment_view_counter, add_running_data)
+                increment_view_counter, add_running_data, add_other_data)
 from config import WEBSITE_TRAFFIC_PANEL_LINK
 
 
@@ -117,6 +117,11 @@ def website_traffic_view(request: HttpRequest):
 
 
 def statistics_view(request: HttpRequest):
+    if request.method == "POST":
+        data = request.POST
+        add_other_data(date=data["date"], study_time=data["study_time"],
+                       play_time=data["play_time"])
+        return HttpResponseRedirect(redirect_to=reverse(viewname="statistics"))
     context = {}
     context["title"] = "Statistics"
     context["canonical_link"] = "https://saugau.com/statistics/"
