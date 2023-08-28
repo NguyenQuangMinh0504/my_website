@@ -13,6 +13,10 @@ access_counter = Counter(name="access",
                          documentation="IP access",
                          labelnames=["client_ip"])
 
+request_counter = Counter(name="request",
+                          documentation="request access",
+                          labelnames=["request"])
+
 start_http_server(port=8193)
 
 with open(file=ACCESS_LOG_PATH, mode="r") as f:
@@ -24,7 +28,9 @@ while True:
             match = re.match(log_format, i)
             if match:
                 client_ip = match.group("remote_addr")
+                request = match.group("request")
                 # Increment prometheus counter
                 access_counter.labels(client_ip=client_ip).inc(amount=1)
+                request_counter.labels(request=request).inc(amount=1)
         initial_position = f.tell()
         time.sleep(5)
