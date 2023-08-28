@@ -1,10 +1,12 @@
 from db import get_running_data, get_other_data
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from config import IMAGES_FOLDER_PATH
 
 
 def generate_matplotlib_graph(x, y, xlabel, ylabel, title, filename):
+    matplotlib.use("agg")
     plt.bar(x, y)
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
     plt.xlabel(xlabel=xlabel)

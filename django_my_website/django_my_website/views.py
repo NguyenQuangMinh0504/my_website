@@ -1,5 +1,6 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
+from .utils import generate_graph
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
@@ -91,6 +92,7 @@ def running_view(request: HttpRequest):
         add_running_data(date=data["date"],
                          duration=data["duration"],
                          distance=data["distance"])
+        generate_graph()
         return HttpResponseRedirect(reverse(viewname="running"))
     context = {}
     context["title"] = "Chạy bộ"
@@ -121,6 +123,7 @@ def statistics_view(request: HttpRequest):
         data = request.POST
         add_other_data(date=data["date"], study_time=data["study_time"],
                        play_time=data["play_time"])
+        generate_graph()
         return HttpResponseRedirect(redirect_to=reverse(viewname="statistics"))
     context = {}
     context["title"] = "Statistics"
