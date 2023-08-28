@@ -5,7 +5,7 @@ from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
                 increment_view_counter, add_running_data, add_other_data)
-from config import WEBSITE_TRAFFIC_PANEL_LINK
+from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK
 
 
 def add_blog_view(request: HttpRequest):
@@ -113,7 +113,8 @@ def website_traffic_view(request: HttpRequest):
     context = {}
     context["title"] = "Website traffic"
     context["canonical_link"] = "https://saugau.com/website-traffic/"
-    context["website_traffic_link"] = WEBSITE_TRAFFIC_PANEL_LINK
+    context["ip_graph_link"] = IP_GRAPH_LINK
+    context["request_graph_link"] = REQUEST_GRAPH_LINK
     return render(request=request, template_name="website_traffic.html",
                   context=context)
 
