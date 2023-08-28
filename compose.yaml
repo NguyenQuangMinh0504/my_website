@@ -5,6 +5,10 @@ services:
       dockerfile: Dockerfile
     ports:
     - "8000:8000"
+    volumes:
+      - type: bind
+        source: django_my_website
+        target: /app
   mysql:
     build:
       context: databases
