@@ -1,11 +1,20 @@
-from db import get_running_data
+from db import get_running_data, get_other_data
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from config import IMAGES_FOLDER_PATH
 
 
-def generate_graph():
+def generate_matplotlib_graph(x, y, xlabel, ylabel, title, filename):
+    plt.bar(x, y)
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
+    plt.xlabel(xlabel=xlabel)
+    plt.ylabel(ylabel=ylabel)
+    plt.title(title)
+    plt.savefig(f"{IMAGES_FOLDER_PATH}/{filename}", format="webp")
+    plt.clf()
 
+
+def generate_graph():
     running_data = get_running_data(last_7_days=False)
     date_list = []
     running_list = []
@@ -15,15 +24,6 @@ def generate_graph():
         running_time_list.append(row["duration"])
         running_list.append(row["distance"])
 
-    plt.clf()
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Quãng đường chạy(km)")
-    plt.title("Biểu đồ theo dõi quãng đường chạy")
-    plt.bar(date_list, running_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/distance.webp", format="webp")
-    plt.clf()
-
     pace_list = []
     for i in range(len(running_list)):
         try:
@@ -31,23 +31,23 @@ def generate_graph():
         except ZeroDivisionError:
             pace_list.append(0)
 
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Pace chạy(phút/km)")
-    plt.title("Biểu đồ theo dõi pace chạy")
+    generate_matplotlib_graph(x=date_list, y=running_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Quãng đường chạy(km)",
+                              title="Biểu đồ theo dõi quãng đường chạy",
+                              filename="distance.webp")
 
-    plt.bar(date_list, pace_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.axhline(y=8, color="red", linestyle="dashed")
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/pace.webp", format="webp")
-    plt.clf()
+    generate_matplotlib_graph(x=date_list, y=pace_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Pace chạy(phút/km)",
+                              title="Biểu đồ theo dõi pace chạy",
+                              filename="pace.webp")
 
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Thời gian chạy(phút)")
-    plt.title("Biểu đồ theo dõi thời gian chạy")
-    plt.bar(date_list, running_time_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/duration.webp", format="webp")
-    plt.clf()
+    generate_matplotlib_graph(x=date_list, y=running_time_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Thời gian chạy",
+                              title="Biểu đồ theo dõi thời gian chạy",
+                              filename="duration.webp")
 
     running_data = get_running_data(last_7_days=True)
     date_list = []
@@ -57,16 +57,6 @@ def generate_graph():
         date_list.append(row["day"])
         running_time_list.append(row["duration"])
         running_list.append(row["distance"])
-
-    plt.clf()
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Quãng đường chạy(km)")
-    plt.title("Biểu đồ theo dõi quãng đường chạy")
-    plt.bar(date_list, running_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/distance-7-days.webp", format="webp")
-    plt.clf()
-
     pace_list = []
     for i in range(len(running_list)):
         try:
@@ -74,23 +64,44 @@ def generate_graph():
         except ZeroDivisionError:
             pace_list.append(0)
 
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Pace chạy(phút/km)")
-    plt.title("Biểu đồ theo dõi pace chạy")
+    generate_matplotlib_graph(x=date_list, y=running_time_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Quãng đường chạy(km)",
+                              title="Biểu đồ theo dõi quãng đường chạy",
+                              filename="distance-7-days.webp")
 
-    plt.bar(date_list, pace_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.axhline(y=8, color="red", linestyle="dashed")
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/pace-7-days.webp", format="webp")
-    plt.clf()
+    generate_matplotlib_graph(x=date_list, y=pace_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Pace chạy (phút/km)",
+                              title="Biểu đồ theo dõi pace chạy",
+                              filename="pace-7-days.webp",
+                              )
 
-    plt.xlabel("Ngày chạy")
-    plt.ylabel("Thời gian chạy(phút)")
-    plt.title("Biểu đồ theo dõi thời gian chạy")
-    plt.bar(date_list, running_time_list)
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=28))
-    plt.savefig(f"{IMAGES_FOLDER_PATH}/duration-7-days.webp", format="webp")
-    plt.clf()
+    generate_matplotlib_graph(x=date_list, y=running_time_list,
+                              xlabel="Ngày chạy",
+                              ylabel="Thời gian chạy(phút)",
+                              title="Biểu đồ theo dõi thời gian chạy",
+                              filename="duration-7-days.webp")
+
+    date_list = []
+    study_time = []
+    play_time = []
+    for row in get_other_data():
+        date_list.append(row["date"])
+        study_time.append(row["study_time"])
+        play_time.append(row["play_time"])
+
+    generate_matplotlib_graph(x=date_list, y=study_time,
+                              xlabel="Ngày",
+                              ylabel="Thời gian học (phút)",
+                              title="Biểu đồ theo dõi thời gian học",
+                              filename="study.webp")
+
+    generate_matplotlib_graph(x=date_list, y=play_time,
+                              xlabel="Ngày",
+                              ylabel="Thời gian chơi (phút)",
+                              title="Biểu đồ theo dõi thời gian chơi",
+                              filename="play.webp")
 
 
 if __name__ == "__main__":
