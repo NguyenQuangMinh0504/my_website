@@ -27,10 +27,22 @@ def get_blog_detail(title):
 
 
 def add_blog(title, snippet, content):
-    return execute(database="blog",
-                   query=f"""INSERT INTO blog (title, snippet, content)
-                    VALUES ('{title}', '{snippet}', '{content}')""",
-                   fetch=None)
+    cnx = connector.connect(user="root",
+                            password=DB_PASSWORD,
+                            database="blog",
+                            host=DB_HOST)
+    cnx.autocommit = True
+    cursor = cnx.cursor(dictionary=True)
+    query = "INSERT INTO blog (title, snippet, content) VALUES (%s, %s, %s)"
+    cursor.execute(query, (title, snippet, content))
+    cursor.close()
+    cnx.close()
+    return None
+    # return execute(
+    #     database="blog",
+    #     query="""INSERT INTO blog (title, snippet, content)
+    #      VALUES ('{}', '{}', '{}')""".format(
+    #      title, snippet, content), fetch=None)
 
 
 def get_all_blog():
