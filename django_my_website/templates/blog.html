@@ -2,6 +2,24 @@
 {% block content %}
 <h1>Đây là nơi mình note lưu ý và viết những gì mình thích</h1>
 <br>
+<div class="d-flex justify-content-end">
+    <div class="col-2 d-flex">
+        Sắp xếp theo: 
+        <select class="form-select" id="selectOrder" onchange="redirectPage()">
+            {% if order == 'day' %}
+                <option selected value="day">Ngày đăng</option>
+                <option value="views">Lượt xem</option>
+            {% elif order == 'views' %}
+                <option value="day">Ngày đăng</option>
+                <option value selected="views">Lượt xem</option>
+            {% else %}
+                <option selected value="day">Ngày đăng</option>
+                <option value="views">Lượt xem</option>
+            {% endif %}
+        </select>
+    </div>
+</div>
+<br>
 {% for blog in blogs %}
     <article class="border">
         <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' blog.title|slugify %}" style="text-decoration: none;">{{ blog.title }}</a></h2>
@@ -9,4 +27,19 @@
     </article>
     <br>
 {% endfor %}
+<script>
+    function redirectPage() {
+        const selectedOrder = document.getElementById('selectOrder').value;
+        switch (selectedOrder) {
+            case 'views':
+            window.location.href = "{% url 'blog' %}?order=views";
+            break;
+            case 'day':
+            window.location.href = "{% url 'blog' %}";
+            break;
+            default:
+            window.location.href = "{% url 'blog' %}";
+        }
+    }
+</script>
 {% endblock %}

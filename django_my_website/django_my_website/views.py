@@ -18,16 +18,22 @@ def add_blog_view(request: HttpRequest):
                  )
     return render(request=request, template_name="add_blog.html", context={
         "title": "Tạo blog",
-        "canonical_links": "https://saugau.com/add-blog/"
+        "canonical_links": "https://saugau.com/add-blog"
     })
 
 
 def blog(request: HttpRequest):
+    order = request.GET.get("order")
+    if order is not None:
+        blogs = get_all_blog(order=order)
+    else:
+        blogs = get_all_blog(order=None)
     return render(request=request,
                   template_name="blog.html",
-                  context={"blogs": get_all_blog(),
+                  context={"blogs": blogs,
                            "title": "Blog cá nhân",
-                           "canonical_link": "https://saugau.com/blog/"})
+                           "order": order,
+                           "canonical_link": "https://saugau.com/blog"})
 
 
 def blog_detail(request: HttpRequest, title: str):
@@ -45,7 +51,7 @@ def blog_detail(request: HttpRequest, title: str):
             "total_view": blog_data["total_view"],
             "date": blog_data["date"].strftime("%m/%d/%Y"),
             "comments": get_all_comment(blog_data["id"],),
-            "canonical_link": f"https://saugau.com/blog/{title}/"}
+            "canonical_link": f"https://saugau.com/blog/{title}"}
             )
 
 
@@ -67,7 +73,7 @@ def about_me(request: HttpRequest):
     return render(request=request,
                   template_name="about_me.html",
                   context={"title": "About me",
-                           "canonical_link": "https://saugau.com/about-me/"})
+                           "canonical_link": "https://saugau.com/about-me"})
 
 
 def homepage(request: HttpRequest):
@@ -96,7 +102,7 @@ def running_view(request: HttpRequest):
         return HttpResponseRedirect(reverse(viewname="running"))
     context = {}
     context["title"] = "Chạy bộ"
-    context["canonical_link"] = "https://saugau.com/running/"
+    context["canonical_link"] = "https://saugau.com/running"
     counter = 0
     for row in reversed(get_running_data()):
         if row["distance"] > 0:
@@ -112,7 +118,7 @@ def running_view(request: HttpRequest):
 def website_traffic_view(request: HttpRequest):
     context = {}
     context["title"] = "Website traffic"
-    context["canonical_link"] = "https://saugau.com/website-traffic/"
+    context["canonical_link"] = "https://saugau.com/website-traffic"
     context["ip_graph_link"] = IP_GRAPH_LINK
     context["request_graph_link"] = REQUEST_GRAPH_LINK
     return render(request=request, template_name="website_traffic.html",
@@ -128,7 +134,7 @@ def statistics_view(request: HttpRequest):
         return HttpResponseRedirect(redirect_to=reverse(viewname="statistics"))
     context = {}
     context["title"] = "Statistics"
-    context["canonical_link"] = "https://saugau.com/statistics/"
+    context["canonical_link"] = "https://saugau.com/statistics"
     return render(request=request, template_name="statistics.html",
                   context=context)
 
@@ -136,7 +142,7 @@ def statistics_view(request: HttpRequest):
 def add_data_view(request: HttpRequest):
     context = {}
     context["title"] = "Add data"
-    context["canonical_link"] = "https://saugau.com/add-data/"
+    context["canonical_link"] = "https://saugau.com/add-data"
     return render(request=request, template_name="add_data.html",
                   context=context)
 

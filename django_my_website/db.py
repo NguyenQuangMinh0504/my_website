@@ -38,15 +38,16 @@ def add_blog(title, snippet, content):
     cursor.close()
     cnx.close()
     return None
-    # return execute(
-    #     database="blog",
-    #     query="""INSERT INTO blog (title, snippet, content)
-    #      VALUES ('{}', '{}', '{}')""".format(
-    #      title, snippet, content), fetch=None)
 
 
-def get_all_blog():
-    return execute(database="blog", query="SELECT * FROM blog", fetch="all")
+def get_all_blog(order: str = None):
+    if order == "views":
+        return execute(database="blog",
+                       query="SELECT * FROM blog ORDER BY total_view DESC",
+                       fetch="all")
+    return execute(database="blog",
+                   query="SELECT * FROM blog ORDER BY id DESC",
+                   fetch="all")
 
 
 def get_all_comment(blog_id):
