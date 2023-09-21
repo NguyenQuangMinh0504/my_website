@@ -28,6 +28,9 @@ def blog(request: HttpRequest):
         blogs = get_all_blog(order=order)
     else:
         blogs = get_all_blog(order=None)
+    # Reformat date from datetime -> string
+    for blog in blogs:
+        blog["date"] = blog["date"].strftime("%m/%d/%Y")
     return render(request=request,
                   template_name="blog.html",
                   context={"blogs": blogs,

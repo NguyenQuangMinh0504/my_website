@@ -24,6 +24,7 @@
     <article class="border">
         <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' blog.title|slugify %}" style="text-decoration: none;">{{ blog.title }}</a></h2>
         <p class="mt-2 ms-2">{{ blog.snippet }}</p>
+        <p class="px-3 text-end"><i>Ngày đăng: {{blog.date}}</i></p>
     </article>
     <br>
 {% endfor %}
