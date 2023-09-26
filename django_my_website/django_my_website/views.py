@@ -5,7 +5,7 @@ from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
                 increment_view_counter, add_running_data, add_other_data)
-from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK
+from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 
 def add_blog_view(request: HttpRequest):
@@ -30,7 +30,7 @@ def blog(request: HttpRequest):
         blogs = get_all_blog(order=None)
     # Reformat date from datetime -> string
     for blog in blogs:
-        blog["date"] = blog["date"].strftime("%m/%d/%Y")
+        blog["date"] = blog["date"].strftime(DATE_FORMAT)
     return render(request=request,
                   template_name="blog.html",
                   context={"blogs": blogs,
@@ -52,7 +52,7 @@ def blog_detail(request: HttpRequest, title: str):
             "id": blog_data["id"],
             "title": blog_data["title"],
             "total_view": blog_data["total_view"],
-            "date": blog_data["date"].strftime("%m/%d/%Y"),
+            "date": blog_data["date"].strftime(DATE_FORMAT),
             "comments": get_all_comment(blog_data["id"],),
             "canonical_link": f"https://saugau.com/blog/{title}"}
             )
