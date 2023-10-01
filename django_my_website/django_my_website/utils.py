@@ -2,7 +2,8 @@ from db import get_running_data, get_other_data
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from config import IMAGES_FOLDER_PATH
+from config import IMAGES_FOLDER_PATH, BOT_API_TOKEN, CHAT_ROOM_ID
+import telebot
 
 
 def generate_matplotlib_graph(x, y, xlabel, ylabel, title, filename):
@@ -104,6 +105,11 @@ def generate_graph():
                               ylabel="Thời gian chơi (phút)",
                               title="Biểu đồ theo dõi thời gian chơi",
                               filename="play.webp")
+
+
+def send_telegram_notification(message: str):
+    bot = telebot.TeleBot(BOT_API_TOKEN)
+    bot.send_message(CHAT_ROOM_ID, message)
 
 
 if __name__ == "__main__":

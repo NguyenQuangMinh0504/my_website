@@ -1,6 +1,6 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
-from .utils import generate_graph
+from .utils import generate_graph, send_telegram_notification
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
@@ -9,6 +9,7 @@ from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 
 def add_blog_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="add-blog"))
     if request.method == "POST":
         data = request.POST
         print(data)
@@ -23,6 +24,7 @@ def add_blog_view(request: HttpRequest):
 
 
 def blog(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="blog"))
     order = request.GET.get("order")
     if order is not None:
         blogs = get_all_blog(order=order)
@@ -40,6 +42,7 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
+    send_telegram_notification(reverse(viewname="blog-detail", args=[title]))
     increment_view_counter(title=title.replace("-", " "))
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -59,6 +62,7 @@ def blog_detail(request: HttpRequest, title: str):
 
 
 def edit_blog_view(request: HttpRequest, title: str):
+    send_telegram_notification(reverse(viewname="edit-blog", args=[title]))
     title = title.replace("-", " ")
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -73,6 +77,7 @@ def edit_blog_view(request: HttpRequest, title: str):
 
 
 def about_me(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="about-me"))
     return render(request=request,
                   template_name="about_me.html",
                   context={"title": "About me",
@@ -80,6 +85,7 @@ def about_me(request: HttpRequest):
 
 
 def homepage(request: HttpRequest):
+    send_telegram_notification("homepage")
     context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
@@ -96,6 +102,7 @@ def add_comment_view(request: HttpRequest, blog_id):
 
 
 def running_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="running"))
     if request.method == "POST":
         data = request.POST
         add_running_data(date=data["date"],
@@ -119,6 +126,7 @@ def running_view(request: HttpRequest):
 
 
 def website_traffic_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="website-traffic"))
     context = {}
     context["title"] = "Website traffic"
     context["canonical_link"] = "https://saugau.com/website-traffic"
@@ -129,6 +137,7 @@ def website_traffic_view(request: HttpRequest):
 
 
 def statistics_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="statistics"))
     if request.method == "POST":
         data = request.POST
         add_other_data(date=data["date"], study_time=data["study_time"],
@@ -143,6 +152,7 @@ def statistics_view(request: HttpRequest):
 
 
 def add_data_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="add-data"))
     context = {}
     context["title"] = "Add data"
     context["canonical_link"] = "https://saugau.com/add-data"
@@ -151,4 +161,5 @@ def add_data_view(request: HttpRequest):
 
 
 def test_view(request: HttpRequest):
+    send_telegram_notification(reverse(viewname="test"))
     return render(request=request, template_name="test.html", context={})
