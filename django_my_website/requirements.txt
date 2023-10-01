@@ -10,3 +10,4 @@ gunicorn
 python-dotenv
 # Prometheus
 prometheus-client
+telebot
