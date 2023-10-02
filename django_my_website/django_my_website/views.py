@@ -1,6 +1,6 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render
-from .utils import generate_graph, send_telegram_notification
+from .utils import generate_graph, send_telegram_notification, add_user_agent
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
@@ -9,10 +9,11 @@ from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 
 def add_blog_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="add-blog"))
+    send_telegram_notification(
+        reverse(viewname="add-blog" + add_user_agent(request))
+        )
     if request.method == "POST":
         data = request.POST
-        print(data)
         add_blog(title=data["title"],
                  snippet=data["snippet"],
                  content=data["content"],
@@ -24,7 +25,9 @@ def add_blog_view(request: HttpRequest):
 
 
 def blog(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="blog"))
+    send_telegram_notification(
+        reverse(viewname="blog") + add_user_agent(request)
+        )
     order = request.GET.get("order")
     if order is not None:
         blogs = get_all_blog(order=order)
@@ -42,7 +45,9 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
-    send_telegram_notification(reverse(viewname="blog-detail", args=[title]))
+    send_telegram_notification(
+        reverse(viewname="blog-detail", args=[title]) + add_user_agent(request)
+        )
     increment_view_counter(title=title.replace("-", " "))
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -62,7 +67,8 @@ def blog_detail(request: HttpRequest, title: str):
 
 
 def edit_blog_view(request: HttpRequest, title: str):
-    send_telegram_notification(reverse(viewname="edit-blog", args=[title]))
+    send_telegram_notification(
+        reverse(viewname="edit-blog", args=[title]) + add_user_agent(request))
     title = title.replace("-", " ")
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -77,7 +83,8 @@ def edit_blog_view(request: HttpRequest, title: str):
 
 
 def about_me(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="about-me"))
+    send_telegram_notification(
+        reverse(viewname="about-me") + add_user_agent(request))
     return render(request=request,
                   template_name="about_me.html",
                   context={"title": "About me",
@@ -85,7 +92,7 @@ def about_me(request: HttpRequest):
 
 
 def homepage(request: HttpRequest):
-    send_telegram_notification("homepage")
+    send_telegram_notification("homepage" + add_user_agent(request))
     context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
@@ -102,7 +109,9 @@ def add_comment_view(request: HttpRequest, blog_id):
 
 
 def running_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="running"))
+    send_telegram_notification(
+        reverse(viewname="running") + add_user_agent(request)
+        )
     if request.method == "POST":
         data = request.POST
         add_running_data(date=data["date"],
@@ -126,7 +135,8 @@ def running_view(request: HttpRequest):
 
 
 def website_traffic_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="website-traffic"))
+    send_telegram_notification(
+        reverse(viewname="website-traffic") + add_user_agent(request))
     context = {}
     context["title"] = "Website traffic"
     context["canonical_link"] = "https://saugau.com/website-traffic"
@@ -137,7 +147,8 @@ def website_traffic_view(request: HttpRequest):
 
 
 def statistics_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="statistics"))
+    send_telegram_notification(
+        reverse(viewname="statistics") + add_user_agent(request))
     if request.method == "POST":
         data = request.POST
         add_other_data(date=data["date"], study_time=data["study_time"],
@@ -152,7 +163,8 @@ def statistics_view(request: HttpRequest):
 
 
 def add_data_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="add-data"))
+    send_telegram_notification(
+        reverse(viewname="add-data") + add_user_agent(request))
     context = {}
     context["title"] = "Add data"
     context["canonical_link"] = "https://saugau.com/add-data"
@@ -161,5 +173,6 @@ def add_data_view(request: HttpRequest):
 
 
 def test_view(request: HttpRequest):
-    send_telegram_notification(reverse(viewname="test"))
+    send_telegram_notification(
+        reverse(viewname="test") + add_user_agent(request))
     return render(request=request, template_name="test.html", context={})

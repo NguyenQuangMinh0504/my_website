@@ -1,4 +1,5 @@
 from db import get_running_data, get_other_data
+from django.http import HttpRequest
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -110,6 +111,12 @@ def generate_graph():
 def send_telegram_notification(message: str):
     bot = telebot.TeleBot(BOT_API_TOKEN)
     bot.send_message(CHAT_ROOM_ID, message)
+
+
+def add_user_agent(request: HttpRequest):
+    """Return user agent of request"""
+    message = "\n User-Agent: " + request.META["HTTP_USER_AGENT"]
+    return message
 
 
 if __name__ == "__main__":
