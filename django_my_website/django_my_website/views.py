@@ -10,7 +10,7 @@ from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 def add_blog_view(request: HttpRequest):
     send_telegram_notification(
-        reverse(viewname="add-blog" + add_user_agent(request))
+        reverse(viewname="add-blog") + add_user_agent(request)
         )
     if request.method == "POST":
         data = request.POST
