@@ -2,14 +2,19 @@ from mysql import connector
 from config import DB_HOST, DB_PASSWORD
 
 
-def execute(database: str, query: str, fetch: str):
+def execute(database: str, query: str, fetch: str, args: tuple = None):
     cnx = connector.connect(user="root",
                             password=DB_PASSWORD,
                             database=database,
                             host=DB_HOST)
     cnx.autocommit = True
     cursor = cnx.cursor(dictionary=True)
-    cursor.execute(query)
+
+    if args is not None:
+        cursor.execute(query, args)
+    else:
+        cursor.execute(query)
+
     result = None
     if fetch == "all":
         result = cursor.fetchall()
@@ -22,22 +27,18 @@ def execute(database: str, query: str, fetch: str):
 
 def get_blog_detail(title):
     return execute(database="blog",
-                   query=f"SELECT * FROM blog WHERE title = '{title}'",
-                   fetch="one")
+                   query="SELECT * FROM blog WHERE title = %s",
+                   fetch="one",
+                   args=(title,))
 
 
 def add_blog(title, snippet, content):
-    cnx = connector.connect(user="root",
-                            password=DB_PASSWORD,
-                            database="blog",
-                            host=DB_HOST)
-    cnx.autocommit = True
-    cursor = cnx.cursor(dictionary=True)
-    query = "INSERT INTO blog (title, snippet, content) VALUES (%s, %s, %s)"
-    cursor.execute(query, (title, snippet, content))
-    cursor.close()
-    cnx.close()
-    return None
+    return execute(
+        database="blog",
+        query="INSERT INTO blog (title, snippet, content) VALUES (%s, %s, %s)",
+        fetch=None,
+        args=(title, snippet, content)
+        )
 
 
 def get_all_blog(order: str = None):
@@ -52,15 +53,17 @@ def get_all_blog(order: str = None):
 
 def get_all_comment(blog_id):
     return execute(database="blog",
-                   query=f"SELECT * FROM comment WHERE blog_id = {blog_id}",
-                   fetch="all")
+                   query="SELECT * FROM comment WHERE blog_id = %s",
+                   fetch="all",
+                   args=(blog_id,))
 
 
 def add_comment(blog_id, content):
     return execute(database="blog",
-                   query=f"""INSERT INTO comment (content, blog_id)
-                    VALUES('{content}', {blog_id})""",
-                   fetch=None)
+                   query="""INSERT INTO comment (content, blog_id)
+                   VALUES(%s, %s)""",
+                   fetch=None,
+                   args=(content, blog_id))
 
 
 def get_running_data(last_7_days=False):
