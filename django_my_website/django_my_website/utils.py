@@ -116,11 +116,12 @@ def send_telegram_notification(message: str):
 def add_metadata(request: HttpRequest):
     """Return user agent of request"""
     user_agent = request.META["HTTP_USER_AGENT"]
-    for bot in ["http://www.google.com/bot.html", "http://www.bing.com/bingbot.htm"]:
+    for bot in ["http://www.google.com/bot.html",
+                "http://www.bing.com/bingbot.htm"]:
         if bot in user_agent:
             return None
     message = "\n User-Agent: " + user_agent
-    message += "\n Ip Address: " + request.META["REMOTE_ADDR"]
+    message += "\n Ip Address: " + request.META["X-Real-IP"]
     return message
 
 
