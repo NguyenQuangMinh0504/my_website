@@ -59,11 +59,12 @@ def get_all_comment(blog_id):
 
 
 def add_comment(blog_id, content):
-    return execute(database="blog",
-                   query="""INSERT INTO comment (content, blog_id)
-                   VALUES(%s, %s)""",
-                   fetch=None,
-                   args=(content, blog_id))
+    return execute(
+        database="blog",
+        query="INSERT INTO comment (content, blog_id) VALUES(%s, %s)",
+        fetch=None,
+        args=(content, blog_id)
+        )
 
 
 def get_running_data(last_7_days=False):
@@ -78,11 +79,12 @@ def get_running_data(last_7_days=False):
 
 
 def edit_blog(old_title, new_title, snippet, content):
-    return execute(database="blog",
-                   query=f""" UPDATE blog SET title = '{new_title}',
-                   snippet = '{snippet}', content = '{content}'
-                   WHERE title = '{old_title}';""",
-                   fetch=None)
+    return execute(
+        database="blog",
+        query="""UPDATE blog SET title = %s,
+                 snippet = %s, content = %s WHERE title = %s""",
+        fetch=None,
+        args=(new_title, snippet, content, old_title))
 
 
 def add_running_data(date: str, duration: int, distance: float):
