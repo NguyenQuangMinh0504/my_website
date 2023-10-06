@@ -113,9 +113,14 @@ def send_telegram_notification(message: str):
     bot.send_message(CHAT_ROOM_ID, message)
 
 
-def add_user_agent(request: HttpRequest):
+def add_metadata(request: HttpRequest):
     """Return user agent of request"""
-    message = "\n User-Agent: " + request.META["HTTP_USER_AGENT"]
+    user_agent = request.META["HTTP_USER_AGENT"]
+    for bot in ["http://www.google.com/bot.html", "http://www.bing.com/bingbot.htm"]:
+        if bot in user_agent:
+            return None
+    message = "\n User-Agent: " + user_agent
+    message += "\n Ip Address: " + request.META["REMOTE_ADRD"]
     return message
 
 
