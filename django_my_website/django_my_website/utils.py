@@ -121,7 +121,13 @@ def add_metadata(request: HttpRequest):
         if bot in user_agent:
             return None
     message = "\n User-Agent: " + user_agent
-    message += "\n Ip Address: " + request.META["X-Real-IP"]
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    ip = None
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    message += "\n Ip Address: " + ip
     return message
 
 
