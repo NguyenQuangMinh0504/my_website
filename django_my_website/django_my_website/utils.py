@@ -120,7 +120,7 @@ def add_metadata(request: HttpRequest):
         if bot in user_agent:
             return None
     message = "\n User-Agent: " + user_agent
-    message += "\n Ip Address: " + request.META["REMOTE_ADRD"]
+    message += "\n Ip Address: " + request.META["REMOTE_ADDR"]
     return message
 
 
