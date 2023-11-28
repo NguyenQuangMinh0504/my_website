@@ -2,6 +2,7 @@
 - hosts: website_server
   name: Reload server
   become: yes
+  gather_facts: no
   tasks:
     - name: Reload openresty server
       ansible.builtin.command:
