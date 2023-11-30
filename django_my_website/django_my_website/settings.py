@@ -116,7 +116,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # STATIC_URL = 'static/'
-STATIC_URL = 'https://saugau.cdn.vccloud.vn/static/'
+STATIC_URL = 'https://saugau.com/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
