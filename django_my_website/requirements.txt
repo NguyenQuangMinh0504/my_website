@@ -10,4 +10,7 @@ gunicorn
 python-dotenv
 # Prometheus
 prometheus-client
+# Sending telegram
 telebot
+# IP Geolocation
+ip2geotools
