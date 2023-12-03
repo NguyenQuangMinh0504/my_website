@@ -176,3 +176,9 @@ def test_view(request: HttpRequest):
     send_telegram_notification(
         reverse(viewname="test") + add_metadata(request))
     return render(request=request, template_name="test.html", context={})
+
+
+def github_view(request: HttpRequest):
+    data = request.POST()
+    if "django_my_website/requirements.txt" in data["commits"]["modified"]:
+        send_telegram_notification(message="It worked!!!")
