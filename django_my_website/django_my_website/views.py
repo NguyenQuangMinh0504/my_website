@@ -185,7 +185,7 @@ def test_view(request: HttpRequest):
 def github_view(request: HttpRequest):
     data = json.loads(request.POST["payload"])
     os.chdir("/opt/my_website")
-    subprocess.run(["git", "fetch"])
+    subprocess.run(["git", "pull"])
     if "django_my_website/requirements.txt" in data["head_commit"]["modified"]:
         command = [
             '/opt/my_website_venv/bin/python3.9',
