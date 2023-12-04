@@ -1,4 +1,4 @@
-from django.http import HttpRequest, Http404, HttpResponseRedirect
+from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .utils import generate_graph, send_telegram_notification, add_metadata
@@ -185,4 +185,4 @@ def github_view(request: HttpRequest):
     print(data)
     # if "django_my_website/requirements.txt" in data["commits"]["modified"]:
     #     send_telegram_notification(message="It worked!!!")
-    # return "Hello"
+    return HttpResponse(content="Hello")
