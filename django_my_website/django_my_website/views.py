@@ -193,8 +193,7 @@ def github_view(request: HttpRequest):
             '-r',
             '/opt/my_website/django_my_website/requirements.txt'
             ]
-        subprocess.run(
-            command, check=True
-            )
+        result = subprocess.run(command, check=True)
+        print(result.stdout.decode())
         send_telegram_notification("It worked")
     return HttpResponse(content="Success")
