@@ -94,6 +94,15 @@ def about_me(request: HttpRequest):
                            "canonical_link": "https://saugau.com/about-me"})
 
 
+def list_100_view(request: HttpRequest):
+    send_telegram_notification(
+        reverse(viewname="about-me") + add_metadata(request))
+    return render(request=request,
+                  template_name="list_100.html",
+                  context={"title": "List 100",
+                           "canonical_link": "https://saugau.com/list-100"})
+
+
 def homepage(request: HttpRequest):
     send_telegram_notification("homepage" + add_metadata(request))
     context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
