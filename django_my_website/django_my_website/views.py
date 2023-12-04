@@ -181,8 +181,8 @@ def test_view(request: HttpRequest):
 
 @csrf_exempt
 def github_view(request: HttpRequest):
-    data = request.POST
+    data = request.POST.dict()
     print(data)
     # if "django_my_website/requirements.txt" in data["commits"]["modified"]:
     #     send_telegram_notification(message="It worked!!!")
-    return "Hello"
+    # return "Hello"
