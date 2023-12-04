@@ -1,6 +1,7 @@
 --- 
 - hosts: website_server
   become: yes
+  gather_facts: no
   name: Synchronize code using github
   tasks:
     - name: Pulling code from github
