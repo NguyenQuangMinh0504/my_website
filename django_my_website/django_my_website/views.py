@@ -1,4 +1,5 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
@@ -178,6 +179,7 @@ def test_view(request: HttpRequest):
     return render(request=request, template_name="test.html", context={})
 
 
+@csrf_exempt
 def github_view(request: HttpRequest):
     data = request.POST()
     if "django_my_website/requirements.txt" in data["commits"]["modified"]:
