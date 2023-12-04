@@ -184,6 +184,6 @@ def github_view(request: HttpRequest):
     data = request.POST
     print(data)
     print(data.keys())
-    if "django_my_website/requirements.txt" in data["payload"]["commits"]["modified"]:
+    if "django_my_website/requirements.txt" in data["payload"]["commits"][0]["modified"]:
         send_telegram_notification(message="It worked!!!")
     return HttpResponse(content="Hello")
