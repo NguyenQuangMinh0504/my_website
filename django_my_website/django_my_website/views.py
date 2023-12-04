@@ -2,7 +2,8 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 import json
-import subprocess, os
+import subprocess
+import os
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
