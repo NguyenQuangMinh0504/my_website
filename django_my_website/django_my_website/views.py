@@ -2,6 +2,7 @@ from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 import json
+import subprocess
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
@@ -184,5 +185,8 @@ def test_view(request: HttpRequest):
 def github_view(request: HttpRequest):
     data = json.loads(request.POST["payload"])
     if "django_my_website/requirements.txt" in data["head_commit"]["modified"]:
+        subprocess.run(
+            "/opt/my_website_venv/bin/python3.9 -m pip install -r /opt/my_website/django_my_website/requirements.txt"
+            )
         send_telegram_notification("It worked")
     return HttpResponse(content="Success")
