@@ -26,6 +26,3 @@ Tạo thư mục chứa log rồi chạy Openresty web server với file config 
 ansible-playbook -i hosts.ini run_django_application.ansible.yaml
 ````
 Tạo python virtual environment rồi chạy gunicorn server
-
-hello
-
