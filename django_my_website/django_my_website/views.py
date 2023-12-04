@@ -196,5 +196,5 @@ def github_view(request: HttpRequest):
             '/opt/my_website/django_my_website/requirements.txt'
             ]
         subprocess.run(command, check=True)
-        send_telegram_notification("It worked")
+        send_telegram_notification("Update environment successfully!!!")
     return HttpResponse(content="Success")
