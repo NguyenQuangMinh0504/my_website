@@ -1,6 +1,7 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+import json
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
@@ -181,10 +182,9 @@ def test_view(request: HttpRequest):
 
 @csrf_exempt
 def github_view(request: HttpRequest):
-    data = request.POST
-    print(data["payload"])
-    print(type(data["payload"]))
-    send_telegram_notification(data['payload'])
+    data = json.loads(request.POST["payload"])
+    print(data)
+
     # if "django_my_website/requirements.txt" in data["payload"]["commits"][0]["modified"]:
     #     send_telegram_notification(message="It worked!!!")
     return HttpResponse(content="Hello")
