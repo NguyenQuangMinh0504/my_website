@@ -96,7 +96,7 @@ def about_me(request: HttpRequest):
 
 def list_100_view(request: HttpRequest):
     send_telegram_notification(
-        reverse(viewname="about-me") + add_metadata(request))
+        reverse(viewname="list-100") + add_metadata(request))
     return render(request=request,
                   template_name="list_100.html",
                   context={"title": "List 100",
