@@ -184,7 +184,7 @@ def test_view(request: HttpRequest):
 @csrf_exempt
 def github_view(request: HttpRequest):
     data = json.loads(request.POST["payload"])
-    os.chdir("/opt/my_webiste")
+    os.chdir("/opt/my_website")
     subprocess.run("git fetch")
     if "django_my_website/requirements.txt" in data["head_commit"]["modified"]:
         command = [
