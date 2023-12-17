@@ -29,9 +29,9 @@ def add_blog_view(request: HttpRequest):
 
 
 def blog(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="blog") + add_metadata(request)
-    #     )
+    send_telegram_notification(
+        reverse(viewname="blog") + add_metadata(request)
+        )
     order = request.GET.get("order")
     if order is not None:
         blogs = get_all_blog(order=order)
@@ -49,9 +49,9 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
-    # send_telegram_notification(
-    #     reverse(viewname="blog-detail", args=[title]) + add_metadata(request)
-    #     )
+    send_telegram_notification(
+        reverse(viewname="blog-detail", args=[title]) + add_metadata(request)
+        )
     increment_view_counter(title=title.replace("-", " "))
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -87,8 +87,8 @@ def edit_blog_view(request: HttpRequest, title: str):
 
 
 def about_me(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="about-me") + add_metadata(request))
+    send_telegram_notification(
+        reverse(viewname="about-me") + add_metadata(request))
     return render(request=request,
                   template_name="about_me.html",
                   context={"title": "About me",
@@ -96,8 +96,8 @@ def about_me(request: HttpRequest):
 
 
 def list_100_view(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="list-100") + add_metadata(request))
+    send_telegram_notification(
+        reverse(viewname="list-100") + add_metadata(request))
     return render(request=request,
                   template_name="list_100.html",
                   context={"title": "List 100",
@@ -177,8 +177,8 @@ def statistics_view(request: HttpRequest):
 
 
 def add_data_view(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="add-data") + add_metadata(request))
+    send_telegram_notification(
+        reverse(viewname="add-data") + add_metadata(request))
     context = {}
     context["title"] = "Add data"
     context["canonical_link"] = "https://saugau.com/add-data"
