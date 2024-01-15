@@ -3,11 +3,15 @@
   become: yes
   name: Install necessary package
   tasks:
-    - name: Install git for first time deployment
+    - name: Install git
       ansible.builtin.apt:
         name:
           - git
-    - name: Install lsof for checking port 
+    # - name: Install python mysql module to use ansible mysql
+    #   ansible.builtin.apt:
+    #     name:
+    #       - python3-mysqldb
+    - name: Install lsof
       ansible.builtin.apt:
         name:
           - lsof
@@ -27,6 +31,10 @@
       ansible.builtin.apt:
         name:
           - supervisor
+    # - name: Install prometheus
+    #   ansible.builtin.apt:
+    #     name:
+    #       - prometheus
     - name: Add openresty GPG key
       ansible.builtin.apt_key:
         url: https://openresty.org/package/pubkey.gpg
