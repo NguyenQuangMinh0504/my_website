@@ -1,6 +1,7 @@
 ---
 - hosts: website_server
   become: yes
+  gather_facts: no
   tasks: 
     - name: Create the virtual environment 
       ansible.builtin.pip:
