@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:
+      - run: "cd /opt/my_website/deployment && /opt/my_website_venv/bin/ansible-playbook synchronize_code.ansible.yaml --connection=local --limit 127.0.0.1 --inventory 127.0.0.1,"
       - run: "cd /opt/my_website/deployment && /opt/my_website_venv/bin/ansible-playbook reload_server.ansible.yaml --connection=local --limit 127.0.0.1 --inventory 127.0.0.1,"
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
