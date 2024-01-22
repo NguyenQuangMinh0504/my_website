@@ -20,14 +20,23 @@
     </div>
 </div>
 <br>
-{% for blog in blogs %}
-    <article class="border">
-        <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' blog.title|slugify %}" style="text-decoration: none;">{{ blog.title }}</a></h2>
-        <p class="mt-2 ms-2">{{ blog.snippet }}</p>
-        <p class="px-3 text-end"><i>Ngày đăng: {{blog.date}}</i></p>
-    </article>
-    <br>
-{% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+        {% for blog in blogs %}
+            <article class="border">
+                <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' blog.title|slugify %}" style="text-decoration: none;">{{ blog.title }}</a></h2>
+                <p class="mt-2 ms-2">{{ blog.snippet }}</p>
+                <p class="px-3 text-end"><i>Ngày đăng: {{blog.date}}</i></p>
+            </article>
+            <br>
+        {% endfor %}
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>
+
 <script>
     function redirectPage() {
         const selectedOrder = document.getElementById('selectOrder').value;
