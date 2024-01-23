@@ -33,6 +33,18 @@
         {% endfor %}
         </div>
         <div class="col-sm-4">
+            <div class="border">
+                <h2 class="text-center text-primary">Tags</h2>
+                <hr>
+                <div class="container">
+                    <div class="tag-cloud">
+                        {% for tag in tags %}
+                            <a href="#" class="tag-cloud-link border box bg-primary mx-1 p-2 rounded-3 text-white text-decoration-none">{{ tag.name }}</a>
+                        {% endfor %}
+                      </div>
+                  </div>
+                <br>
+            </div>
         </div>
     </div>
 </div>
