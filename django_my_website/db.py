@@ -119,3 +119,12 @@ def get_all_tag():
     return execute(database="blog",
                    query="SELECT name FROM tag",
                    fetch="all")
+
+
+def get_blog_tag(blog_id: int):
+    return execute(
+        database="blog",
+        query="SELECT name FROM blog_tag INNER JOIN tag ON blog_tag.tag_id = tag.id WHERE blog_id = %s",
+        fetch="all",
+        args=(blog_id, ),
+        )
