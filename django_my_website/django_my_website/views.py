@@ -8,7 +8,7 @@ from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
-                increment_view_counter, add_running_data, add_other_data, get_all_tag)
+                increment_view_counter, add_running_data, add_other_data, get_all_tag, get_blog_tag)
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 
@@ -41,6 +41,8 @@ def blog(request: HttpRequest):
     # Reformat date from datetime -> string
     for blog in blogs:
         blog["date"] = blog["date"].strftime(DATE_FORMAT)
+        blog["tags"] = get_blog_tag(blog_id=blog["id"])
+        print(blog["tags"])
     return render(request=request,
                   template_name="blog.html",
                   context={"blogs": blogs,
