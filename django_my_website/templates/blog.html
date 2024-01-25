@@ -26,11 +26,11 @@
         {% for blog in blogs %}
             <article class="border">
                 <h2 class="mt-2 ms-2"><a href="{% url 'blog-detail' blog.title|slugify %}" style="text-decoration: none;">{{ blog.title }}</a></h2>
-                <br>
+                <p class="mt-2 ms-2">{{ blog.snippet }}</p>
                 {% for tag in blog.tags %}
                     <a href="{% url 'blog'%}?tag={{tag.name }}" class="tag-cloud-link border box bg-primary mx-2 p-2 rounded-3 text-white text-decoration-none">{{ tag.name }}</a>
                 {% endfor %}
-                <p class="mt-2 ms-2">{{ blog.snippet }}</p>
+
                 <p class="px-3 text-end"><i>Ngày đăng: {{blog.date}}</i></p>
             </article>
             <br>
