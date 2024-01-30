@@ -8,7 +8,7 @@ from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, add_blog, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
-                increment_view_counter, add_running_data, add_other_data, get_all_tag, get_blog_tag, 
+                increment_view_counter, add_running_data, add_other_data, get_all_tag, get_blog_tag,
                 get_all_blog_with_tag)
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
