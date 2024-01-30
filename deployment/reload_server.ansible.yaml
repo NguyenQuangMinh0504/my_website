@@ -20,3 +20,4 @@
         app: "django_my_website.wsgi"
         chdir: /opt/my_website/django_my_website
         venv: /opt/my_website_venv
+        config: /opt/my_website/web_server/gunicorn_config.py
