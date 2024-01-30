@@ -132,7 +132,8 @@ def add_metadata(request: HttpRequest):
     """Return meta data of request"""
     user_agent = request.META["HTTP_USER_AGENT"]
     for bot in ["http://www.google.com/bot.html",
-                "http://www.bing.com/bingbot.htm"]:
+                "http://www.bing.com/bingbot.htm",
+                "IonCrawl"]:
         if bot in user_agent:
             return None
     message = "\n User-Agent: " + user_agent
