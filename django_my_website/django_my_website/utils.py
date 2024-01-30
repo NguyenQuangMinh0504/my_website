@@ -128,14 +128,14 @@ def get_ip_location(ip_address: str):
         return None
 
 
-def add_metadata(request: HttpRequest):
+def add_metadata(request: HttpRequest) -> str:
     """Return meta data of request"""
     user_agent = request.META["HTTP_USER_AGENT"]
     for bot in ["http://www.google.com/bot.html",
                 "http://www.bing.com/bingbot.htm",
                 "IonCrawl"]:
         if bot in user_agent:
-            return None
+            return ""
     message = "\n User-Agent: " + user_agent
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     ip = None
