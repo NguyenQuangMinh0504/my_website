@@ -14,15 +14,19 @@ from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
 
 
 def add_blog_view(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="add-blog") + add_metadata(request)
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="add-blog") + meta_data
         )
+
     if request.method == "POST":
         data = request.POST
         add_blog(title=data["title"],
                  snippet=data["snippet"],
                  content=data["content"],
                  )
+
     return render(request=request, template_name="add_blog.html", context={
         "title": "Tạo blog",
         "canonical_links": "https://saugau.com/add-blog"
@@ -30,8 +34,10 @@ def add_blog_view(request: HttpRequest):
 
 
 def blog(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="blog") + add_metadata(request)
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="blog") + meta_data
         )
 
     order = request.GET.get("order")
@@ -59,9 +65,12 @@ def blog(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
-    send_telegram_notification(
-        reverse(viewname="blog-detail", args=[title]) + add_metadata(request)
-        )
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="blog-detail", args=[title]) + meta_data
+            )
+
     increment_view_counter(title=title.replace("-", " "))
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -81,8 +90,10 @@ def blog_detail(request: HttpRequest, title: str):
 
 
 def edit_blog_view(request: HttpRequest, title: str):
-    send_telegram_notification(
-        reverse(viewname="edit-blog", args=[title]) + add_metadata(request))
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="edit-blog", args=[title]) + meta_data)
     title = title.replace("-", " ")
     blog_data = get_blog_detail(title=title.replace("-", " "))
     if blog_data is None:
@@ -97,8 +108,10 @@ def edit_blog_view(request: HttpRequest, title: str):
 
 
 def about_me(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="about-me") + add_metadata(request))
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="about-me") + meta_data)
     return render(request=request,
                   template_name="about_me.html",
                   context={"title": "About me",
@@ -106,8 +119,10 @@ def about_me(request: HttpRequest):
 
 
 def list_100_view(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="list-100") + add_metadata(request))
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification(
+            reverse(viewname="list-100") + meta_data)
     return render(request=request,
                   template_name="list_100.html",
                   context={"title": "List 100",
@@ -116,7 +131,9 @@ def list_100_view(request: HttpRequest):
 
 def homepage(request: HttpRequest):
     # Disable sending telegram in homepage
-    # send_telegram_notification("homepage" + add_metadata(request))
+    meta_data = add_metadata(request)
+    if meta_data != "":
+        send_telegram_notification("homepage" + meta_data)
     context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
