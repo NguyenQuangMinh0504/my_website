@@ -131,13 +131,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGGING = {
-    "version": 1,
-    "handlers": {
-        "mail_admins": {
-            "level": "ERROR",
-            "class": "django.utils.log.AdminEmailHandler",
-            "include_html": True,
-        },
-    }
-}
+# LOGGING = {
+#     "version": 1,
+#     "handlers": {
+#         "mail_admins": {
+#             "level": "ERROR",
+#             "class": "django.utils.log.AdminEmailHandler",
+#             "include_html": True,
+#         },
+#     }
+# }
