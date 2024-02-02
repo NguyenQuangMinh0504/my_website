@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
+ADMINS = [("NGUYEN QUANG MINH", "ngquangminh05042001@gmail.com")]
 
 # Application definition
 
