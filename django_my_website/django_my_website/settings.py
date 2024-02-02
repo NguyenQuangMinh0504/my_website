@@ -132,6 +132,7 @@ STATICFILES_DIRS = [
 ]
 
 LOGGING = {
+    "version": 1,
     "handlers": {
         "mail_admins": {
             "level": "ERROR",
