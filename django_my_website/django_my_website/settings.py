@@ -130,3 +130,13 @@ CSRF_TRUSTED_ORIGINS = ["https://saugau.com"]
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+LOGGING = {
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "include_html": True,
+        },
+    }
+}
