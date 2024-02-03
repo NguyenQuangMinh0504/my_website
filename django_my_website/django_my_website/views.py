@@ -1,5 +1,6 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import slugify
 from django.shortcuts import render
 import json
 import subprocess
@@ -55,6 +56,9 @@ def blog(request: HttpRequest):
     for blog in blogs:
         blog["date"] = blog["date"].strftime(DATE_FORMAT)
         blog["tags"] = get_blog_tag(blog_id=blog["id"])
+        # handle slugify error
+        blog["title"] = blog["title"].replace("đ", "d")
+
     return render(request=request,
                   template_name="blog.html",
                   context={"blogs": blogs,
