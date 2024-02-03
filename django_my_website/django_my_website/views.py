@@ -1,6 +1,6 @@
 from django.http import HttpRequest, Http404, HttpResponseRedirect, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.utils import slugify
+from django.utils.text import slugify
 from django.shortcuts import render
 import json
 import subprocess
