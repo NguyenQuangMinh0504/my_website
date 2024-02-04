@@ -2,6 +2,26 @@
 {% block content %}
 <h1>Đây là nơi mình note lưu ý và viết những gì mình thích</h1>
 <br>
+<div class="mb-3">
+    <input type="text" class="form-control" name="title" placeholder="Tìm kiếm bài viết ..." id="search-box">
+</div>  
+
+
+
+<script>
+
+const input = document.getElementById('search-input');
+const suggestionsList = document.getElementById('suggestions');
+
+const suggestions = ['apple', 'banana', 'cherry', 'dragonfruit']; // Replace with your data
+
+input.addEventListener('input', () => {
+  const query = input.value.toLowerCase();
+  const filtered = suggestions.filter(suggestion => suggestion.toLowerCase().startsWith(query));
+  suggestionsList.innerHTML = filtered.map(suggestion => `<li>${suggestion}</li>`).join('');
+  suggestionsList.style.display = filtered.length > 0 ? 'block' : 'none';
+});
+</script>
 <div class="d-flex justify-content-end">
     <div class="col-2 d-flex">
         Sắp xếp theo: 
@@ -67,5 +87,23 @@
             window.location.href = "{% url 'blog' %}";
         }
     }
+</script>
+<script>
+    $('#search-box').on('keyup', function() {
+        var query = $(this).val();
+        $.ajax({
+            url: "{% url 'search' %}",
+            data: {q: query},
+            success: function(response) {
+                $('#results').html('');
+                console.log(response)
+                $.each(response.results, function(index, result) {
+                    $('#results').append('<li>' + result + '</li>');
+                    console.log(result)
+                    console.log(response)
+                });
+            }
+        });
+    });
 </script>
 {% endblock %}
