@@ -19,7 +19,7 @@ from django.urls import path
 from .views import (blog, blog_detail, about_me, homepage,
                     add_blog_view, add_comment_view, running_view,
                     edit_blog_view, website_traffic_view, test_view,
-                    statistics_view, add_data_view, github_view, list_100_view, search_view)
+                    statistics_view, add_data_view, github_view, list_100_view)
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
@@ -40,5 +40,4 @@ urlpatterns = [
     path(route="add-data", view=add_data_view, name="add-data"),
     path(route="github", view=github_view, name="github"),
     path(route="list-100", view=list_100_view, name="list-100"),
-    path(route="search", view=search_view, name="search"),
 ]
