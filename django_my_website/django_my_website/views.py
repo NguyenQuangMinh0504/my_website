@@ -223,6 +223,16 @@ def test_view(request: HttpRequest):
     return render(request=request, template_name="test.html", context={})
 
 
+def search_view(request: HttpRequest):
+    # meta_data = add_metadata(request)
+    # if meta_data != "":
+    #     send_telegram_notification(
+    #         reverse(viewname="blog") + meta_data
+    #     )
+    q = request.GET.get("q")
+    return HttpResponse(q)
+
+
 @csrf_exempt
 def github_view(request: HttpRequest):
     data = json.loads(request.POST["payload"])
