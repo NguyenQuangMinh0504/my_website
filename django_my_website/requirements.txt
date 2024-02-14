@@ -16,3 +16,5 @@ telebot
 ip2geotools
 # CI/CD, Auto Deployment
 ansible
+# For using default mysql django module
+mysqlclient

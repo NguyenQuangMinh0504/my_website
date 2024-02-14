@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g5=z-r%09b%dpyg^jn)pbmcfr1gg@i8&xyr-ioe9d2sxci+^au'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
@@ -76,8 +76,9 @@ WSGI_APPLICATION = 'django_my_website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'PASSWORD': "qmqmqm8c3",
+        "NAME": "blog",
     }
 }
 
@@ -115,6 +116,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+
+# STATIC_ROOT = "/Users/minhnguyenquang/Desktop/PROJECT/my_website/django_my_website"
 
 # STATIC_URL = 'static/'
 # STATIC_URL = 'https://saugau.com/static/'
