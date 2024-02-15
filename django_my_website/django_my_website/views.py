@@ -8,7 +8,7 @@ import os
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_blog_detail, get_all_blog,
-                get_all_comment, add_comment, get_running_data, edit_blog,
+                get_all_comment, add_comment, get_running_data,
                 increment_view_counter, add_running_data, add_other_data, get_all_tag, get_blog_tag,
                 get_all_blog_with_tag)
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
@@ -71,24 +71,6 @@ def blog_detail(request: HttpRequest, title: str):
             "comments": get_all_comment(blog_data["id"],),
             "canonical_link": f"https://saugau.com/blog/{title}"}
             )
-
-
-def edit_blog_view(request: HttpRequest, title: str):
-    meta_data = add_metadata(request)
-    if meta_data != "":
-        send_telegram_notification(
-            reverse(viewname="edit-blog", args=[title]) + meta_data)
-    title = title.replace("-", " ")
-    blog_data = get_blog_detail(title=title.replace("-", " "))
-    if blog_data is None:
-        raise Http404
-    if request.method == "POST":
-        data = request.POST
-        edit_blog(old_title=title, new_title=data["title"],
-                  snippet=data["snippet"], content=data["content"])
-        return HttpResponseRedirect(reverse(viewname="blog"))
-    return render(request=request, template_name="edit_blog.html",
-                  context=blog_data)
 
 
 def about_me(request: HttpRequest):

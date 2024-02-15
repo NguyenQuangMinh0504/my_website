@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import (blog, blog_detail, about_me, homepage,
                     add_comment_view, running_view,
-                    edit_blog_view, website_traffic_view, test_view,
+                    website_traffic_view, test_view,
                     statistics_view, add_data_view, github_view, list_100_view)
 
 urlpatterns = [
@@ -30,8 +30,6 @@ urlpatterns = [
     path(route="blog/<str:title>", view=blog_detail, name="blog-detail"),
     path(route="blog/add-comment/<int:blog_id>",
          view=add_comment_view, name="add-comment"),
-    path(route="edit-blog/<str:title>", view=edit_blog_view,
-         name="edit-blog"),
     path(route="website-traffic", view=website_traffic_view,
          name="website-traffic"),
     path(route="test", view=test_view, name="test"),

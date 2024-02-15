@@ -69,15 +69,6 @@ def get_running_data(last_7_days=False):
                    fetch="all")
 
 
-def edit_blog(old_title, new_title, snippet, content):
-    return execute(
-        database="blog",
-        query="""UPDATE blog SET title = %s,
-                 snippet = %s, content = %s WHERE title = %s""",
-        fetch=None,
-        args=(new_title, snippet, content, old_title))
-
-
 def add_running_data(date: str, duration: int, distance: float):
     return execute(database="my_data",
                    query=f"""INSERT INTO running_data
