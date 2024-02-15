@@ -7,31 +7,11 @@ import subprocess
 import os
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
-from db import (get_blog_detail, add_blog, get_all_blog,
+from db import (get_blog_detail, get_all_blog,
                 get_all_comment, add_comment, get_running_data, edit_blog,
                 increment_view_counter, add_running_data, add_other_data, get_all_tag, get_blog_tag,
                 get_all_blog_with_tag)
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK, DATE_FORMAT
-
-
-def add_blog_view(request: HttpRequest):
-    meta_data = add_metadata(request)
-    if meta_data != "":
-        send_telegram_notification(
-            reverse(viewname="add-blog") + meta_data
-        )
-
-    if request.method == "POST":
-        data = request.POST
-        add_blog(title=data["title"],
-                 snippet=data["snippet"],
-                 content=data["content"],
-                 )
-
-    return render(request=request, template_name="add_blog.html", context={
-        "title": "Tạo blog",
-        "canonical_links": "https://saugau.com/add-blog"
-    })
 
 
 def blog(request: HttpRequest):

@@ -32,15 +32,6 @@ def get_blog_detail(title):
                    args=(title,))
 
 
-def add_blog(title, snippet, content):
-    return execute(
-        database="blog",
-        query="INSERT INTO blog (title, snippet, content) VALUES (%s, %s, %s)",
-        fetch=None,
-        args=(title, snippet, content)
-        )
-
-
 def get_all_blog(order: str = None):
     if order == "views":
         return execute(database="blog",

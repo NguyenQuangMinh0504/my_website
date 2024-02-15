@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import (blog, blog_detail, about_me, homepage,
-                    add_blog_view, add_comment_view, running_view,
+                    add_comment_view, running_view,
                     edit_blog_view, website_traffic_view, test_view,
                     statistics_view, add_data_view, github_view, list_100_view)
 
@@ -26,7 +26,6 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path("running", view=running_view, name="running"),
     path(route="blog", view=blog, name="blog"),
-    path(route="add-blog", view=add_blog_view, name="add-blog"),
     path(route="about-me", view=about_me, name="about-me"),
     path(route="blog/<str:title>", view=blog_detail, name="blog-detail"),
     path(route="blog/add-comment/<int:blog_id>",
