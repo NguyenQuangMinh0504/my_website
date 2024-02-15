@@ -121,7 +121,6 @@ USE_TZ = True
 # STATIC_ROOT = "/Users/minhnguyenquang/Desktop/PROJECT/my_website/django_my_website"
 
 # STATIC_URL = 'static/'
-# STATIC_URL = 'https://saugau.com/static/'
 STATIC_URL = 'https://saugau.edge.vccloud.vn/static/'
 
 # Default primary key field type
