@@ -27,6 +27,14 @@
       ansible.builtin.pip:
         name:
           - virtualenv
+    - name: Install apt module for mysqlclient, which is necessary for django mysql engine
+    # https://github.com/PyMySQL/mysqlclient
+      ansible.builtin.apt:
+        name:
+          - build-essential
+          - pkg-config
+          - python3-dev
+          - default-libmysqlclient-dev
     - name: Install supervisor for manage processeses
       ansible.builtin.apt:
         name:
