@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g5=z-r%09b%dpyg^jn)pbmcfr1gg@i8&xyr-ioe9d2sxci+^au'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["saugau.com", "localhost"]
 
@@ -137,13 +137,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# LOGGING = {
-#     "version": 1,
-#     "handlers": {
-#         "mail_admins": {
-#             "level": "ERROR",
-#             "class": "django.utils.log.AdminEmailHandler",
-#             "include_html": True,
-#         },
-#     }
-# }
+LOGGING = {
+    "version": 1,
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "include_html": True,
+        },
+    }
+}
