@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from config import DB_HOST
+from config import DB_HOST, GOOGLE_APP_PASSWORD, DB_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +26,16 @@ SECRET_KEY = 'django-insecure-g5=z-r%09b%dpyg^jn)pbmcfr1gg@i8&xyr-ioe9d2sxci+^au
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["saugau.com", "localhost"]
+ALLOWED_HOSTS = ["saugau.com", "localhost", "127.0.0.1"]
 
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "ngquangminh05042001@gmail.com"
+EMAIL_HOST_PASSWORD = GOOGLE_APP_PASSWORD
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL = "ngquangminh05042001@gmail.com"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ADMINS = [("NGUYEN QUANG MINH", "ngquangminh05042001@gmail.com"),]
 
 # Application definition
@@ -79,7 +87,7 @@ WSGI_APPLICATION = 'django_my_website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'PASSWORD': "qmqmqm8c3",
+        'PASSWORD': DB_PASSWORD,
         "NAME": "blog",
         "HOST": DB_HOST,
     }
@@ -136,21 +144,3 @@ CSRF_TRUSTED_ORIGINS = ["https://saugau.com"]
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
-LOGGING = {
-    "version": 1,
-    "handlers": {
-        "mail_admins": {
-            "level": "ERROR",
-            "class": "django.utils.log.AdminEmailHandler",
-            "include_html": True,
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}

@@ -7,6 +7,8 @@ from config import DATE_FORMAT
 from db import get_all_blog, get_all_blog_with_tag, get_all_tag, get_blog_tag, get_all_comment, get_blog_detail, increment_view_counter, add_comment
 from django_my_website.utils import add_metadata, send_telegram_notification
 
+from django.core.mail import send_mail
+
 
 def blog(request: HttpRequest):
     meta_data = add_metadata(request)
@@ -31,6 +33,14 @@ def blog(request: HttpRequest):
         blog["tags"] = get_blog_tag(blog_id=blog["id"])
         # handle slugify error
         blog["slug_url"] = slugify(blog["title"].replace("đ", "d").replace("Đ", "D"))
+
+    send_mail(
+        subject="Subject here",
+        message="Here is the message.",
+        from_email=None,
+        recipient_list=["ngquangminh05042001@gmail.com"],
+        fail_silently=False,
+    )
 
     return render(request=request,
                   template_name="blog.html",
