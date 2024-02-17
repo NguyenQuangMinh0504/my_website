@@ -20,7 +20,7 @@ from django.urls import path, include
 from .views import (about_me, homepage,
                     running_view,
                     website_traffic_view, test_view,
-                    statistics_view, add_data_view, github_view, list_100_view)
+                    statistics_view, add_data_view, list_100_view)
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
@@ -33,6 +33,5 @@ urlpatterns = [
     path(route="test", view=test_view, name="test"),
     path(route="statistics", view=statistics_view, name="statistics"),
     path(route="add-data", view=add_data_view, name="add-data"),
-    path(route="github", view=github_view, name="github"),
     path(route="list-100", view=list_100_view, name="list-100"),
 ]

@@ -1,9 +1,5 @@
-from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
-import json
-import subprocess
-import os
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
 from db import (get_running_data,
@@ -113,22 +109,3 @@ def test_view(request: HttpRequest):
     send_telegram_notification(
         reverse(viewname="test") + add_metadata(request))
     return render(request=request, template_name="test.html", context={})
-
-
-@csrf_exempt
-def github_view(request: HttpRequest):
-    data = json.loads(request.POST["payload"])
-    os.chdir("/opt/my_website")
-    subprocess.run(["git", "pull"])
-    if "django_my_website/requirements.txt" in data["head_commit"]["modified"]:
-        command = [
-            '/opt/my_website_venv/bin/python3.9',
-            '-m',
-            'pip',
-            'install',
-            '-r',
-            '/opt/my_website/django_my_website/requirements.txt'
-            ]
-        subprocess.run(command, check=True)
-        send_telegram_notification("Update environment successfully!!!")
-    return HttpResponse(content="Success")
