@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-g5=z-r%09b%dpyg^jn)pbmcfr1gg@i8&xyr-ioe9d2sxci+^au
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["saugau.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["saugau.com", "localhost", "127.0.0.1", "104.198.17.87"]
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "ngquangminh05042001@gmail.com"
