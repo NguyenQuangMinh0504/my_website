@@ -37,3 +37,15 @@ class Blog_Tag(models.Model):
     class Meta:
         db_table = "blog_tag"
         unique_together = ("blog", "tag")
+
+
+class Comment(models.Model):
+    user = models.CharField(max_length=255, default="anonymous")
+    content = models.TextField()
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        db_table = "comment"
