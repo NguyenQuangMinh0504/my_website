@@ -31,9 +31,9 @@ def list_100_view(request: HttpRequest):
 
 def homepage(request: HttpRequest):
     # Disable sending telegram in homepage
-    meta_data = add_metadata(request)
-    if meta_data != "":
-        send_telegram_notification("homepage" + meta_data)
+    # meta_data = add_metadata(request)
+    # if meta_data != "":
+    #     send_telegram_notification("homepage" + meta_data)
     context = {"title": "Trang chủ", "canonical_link": "https://saugau.com"}
     if "user_cookie" in request.COOKIES:
         context["user_cookie"] = request.COOKIES["user_cookie"]
