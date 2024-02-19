@@ -106,6 +106,6 @@ def add_data_view(request: HttpRequest):
 
 
 def test_view(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="test") + add_metadata(request))
+    # send_telegram_notification(
+    #     reverse(viewname="test") + add_metadata(request))
     return render(request=request, template_name="test.html", context={})
