@@ -24,6 +24,7 @@ from .views import (about_me, homepage,
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
+    path(route="accounts/", view=include("django.contrib.auth.urls")),
     path('admin', admin.site.urls),
     path("running", view=running_view, name="running"),
     path(route="blog/", view=include("blog.urls")),
