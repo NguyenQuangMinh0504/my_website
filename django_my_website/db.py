@@ -25,16 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def get_all_blog(order: str = None):
-    if order == "views":
-        return execute(database="blog",
-                       query="SELECT * FROM blog ORDER BY total_view DESC",
-                       fetch="all")
-    return execute(database="blog",
-                   query="SELECT * FROM blog ORDER BY id DESC",
-                   fetch="all")
-
-
 def get_all_comment(blog_id):
     return execute(database="blog",
                    query="SELECT * FROM comment WHERE blog_id = %s",
@@ -103,12 +93,3 @@ def get_blog_tag(blog_id: int):
         fetch="all",
         args=(blog_id, ),
         )
-
-
-def get_all_blog_with_tag(tag_name):
-    return execute(
-        database="blog",
-        query="SELECT blog.* FROM blog INNER JOIN blog_tag ON blog.id = blog_tag.blog_id INNER JOIN tag ON blog_tag.tag_id = tag.id WHERE tag.name = %s",
-        fetch="all",
-        args=(tag_name, ),
-    )

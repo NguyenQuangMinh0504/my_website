@@ -4,10 +4,10 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from config import DATE_FORMAT
-from db import get_all_blog, get_all_blog_with_tag, get_all_tag, get_blog_tag, get_all_comment, increment_view_counter, add_comment
+from db import get_all_tag, get_blog_tag, get_all_comment, increment_view_counter, add_comment
 from django_my_website.utils import add_metadata, send_telegram_notification
 
-from .models import Blog
+from .models import Blog, Tag, Blog_Tag
 
 
 def blog(request: HttpRequest):
@@ -19,26 +19,23 @@ def blog(request: HttpRequest):
     order = request.GET.get("order")
 
     if order is not None:
-        # blogs = get_all_blog(order=order)
         blogs = Blog.objects.order_by("total_view")
     else:
-        # blogs = get_all_blog(order=None)
         blogs = Blog.objects.order_by("-id")
 
     tag = request.GET.get("tag")
     if tag is not None:
-        blogs = get_all_blog_with_tag(tag_name=tag)
+        tag_id = Tag.objects.get(name=tag).id
+        blogs = []
+        for blog in Blog_Tag.objects.filter(tag=tag_id):
+            blogs.append(blog.blog)
 
     tags = get_all_tag()
-    # Reformat date from datetime -> string
-    # for blog in blogs:
-    #     blog["date"] = blog["date"].strftime(DATE_FORMAT)
-    #     # handle slugify error
-    #     blog["slug_url"] = slugify(blog["title"].replace("đ", "d").replace("Đ", "D"))
 
     for blog in blogs:
         blog.slug_url = slugify(blog.title.replace("đ", "d").replace("Đ", "D"))
         blog.tags = get_blog_tag(blog_id=blog.id)
+        blog.date = blog.date.strftime(DATE_FORMAT)
 
     return render(request=request,
                   template_name="blog.html",
