@@ -146,4 +146,4 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-DATE_FORMAT = "%Y-%m-%d"
+# DATE_FORMAT = "%Y-%m-%d"
