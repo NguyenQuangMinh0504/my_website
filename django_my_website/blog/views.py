@@ -1,11 +1,13 @@
-from django.http import Http404, HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.utils.text import slugify
 
 from config import DATE_FORMAT
-from db import get_all_blog, get_all_blog_with_tag, get_all_tag, get_blog_tag, get_all_comment, get_blog_detail, increment_view_counter, add_comment
+from db import get_all_blog, get_all_blog_with_tag, get_all_tag, get_blog_tag, get_all_comment, increment_view_counter, add_comment
 from django_my_website.utils import add_metadata, send_telegram_notification
+
+from .models import Blog
 
 
 def blog(request: HttpRequest):
@@ -49,19 +51,13 @@ def blog_detail(request: HttpRequest, title: str):
             )
 
     increment_view_counter(title=title.replace("-", " "))
-    blog_data = get_blog_detail(title=title.replace("-", " "))
-    if blog_data is None:
-        raise Http404
+    blog = get_object_or_404(Blog, title=title.replace("-", " "))
     return render(
         request=request,
         template_name="blog_detail.html",
         context={
-            "detail": blog_data["content"],
-            "id": blog_data["id"],
-            "title": blog_data["title"],
-            "total_view": blog_data["total_view"],
-            "date": blog_data["date"].strftime(DATE_FORMAT),
-            "comments": get_all_comment(blog_data["id"],),
+            "blog": blog,
+            "comments": get_all_comment(blog.id,),
             "canonical_link": f"https://saugau.com/blog/{title}"}
             )
 

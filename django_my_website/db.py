@@ -25,13 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def get_blog_detail(title):
-    return execute(database="blog",
-                   query="SELECT * FROM blog WHERE title = %s",
-                   fetch="one",
-                   args=(title,))
-
-
 def get_all_blog(order: str = None):
     if order == "views":
         return execute(database="blog",
