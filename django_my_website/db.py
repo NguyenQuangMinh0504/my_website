@@ -80,12 +80,6 @@ def increment_view_counter(title: str):
                    WHERE title = '{title}'""", fetch=None)
 
 
-def get_all_tag():
-    return execute(database="blog",
-                   query="SELECT name FROM tag",
-                   fetch="all")
-
-
 def get_blog_tag(blog_id: int):
     return execute(
         database="blog",
