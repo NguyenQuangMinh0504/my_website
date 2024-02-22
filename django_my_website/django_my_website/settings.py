@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from config import DB_HOST, GOOGLE_APP_PASSWORD, DB_PASSWORD
+import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g5=z-r%09b%dpyg^jn)pbmcfr1gg@i8&xyr-ioe9d2sxci+^au'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config.DEBUG
 
 ALLOWED_HOSTS = ["saugau.com", "localhost", "127.0.0.1"]
 
@@ -131,8 +132,8 @@ USE_TZ = True
 
 # STATIC_ROOT = "/Users/minhnguyenquang/Desktop/PROJECT/my_website/django_my_website"
 
-# STATIC_URL = 'static/'
-STATIC_URL = 'https://saugau.edge.vccloud.vn/static/'
+STATIC_URL = 'static/'
+# STATIC_URL = 'https://saugau.edge.vccloud.vn/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
