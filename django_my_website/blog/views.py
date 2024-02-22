@@ -17,10 +17,13 @@ def blog(request: HttpRequest):
             reverse(viewname="blog") + meta_data
         )
     order = request.GET.get("order")
+
     if order is not None:
-        blogs = get_all_blog(order=order)
+        # blogs = get_all_blog(order=order)
+        blogs = Blog.objects.order_by("total_view")
     else:
-        blogs = get_all_blog(order=None)
+        # blogs = get_all_blog(order=None)
+        blogs = Blog.objects.order_by("-id")
 
     tag = request.GET.get("tag")
     if tag is not None:
@@ -28,11 +31,14 @@ def blog(request: HttpRequest):
 
     tags = get_all_tag()
     # Reformat date from datetime -> string
+    # for blog in blogs:
+    #     blog["date"] = blog["date"].strftime(DATE_FORMAT)
+    #     # handle slugify error
+    #     blog["slug_url"] = slugify(blog["title"].replace("đ", "d").replace("Đ", "D"))
+
     for blog in blogs:
-        blog["date"] = blog["date"].strftime(DATE_FORMAT)
-        blog["tags"] = get_blog_tag(blog_id=blog["id"])
-        # handle slugify error
-        blog["slug_url"] = slugify(blog["title"].replace("đ", "d").replace("Đ", "D"))
+        blog.slug_url = slugify(blog.title.replace("đ", "d").replace("Đ", "D"))
+        blog.tags = get_blog_tag(blog_id=blog.id)
 
     return render(request=request,
                   template_name="blog.html",

@@ -145,3 +145,5 @@ CSRF_TRUSTED_ORIGINS = ["https://saugau.com"]
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+DATE_FORMAT = "%Y-%m-%d"
