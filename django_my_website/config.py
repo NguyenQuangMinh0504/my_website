@@ -10,4 +10,4 @@ DATE_FORMAT = "%m/%d/%Y"
 BOT_API_TOKEN = os.getenv("BOT_API_TOKEN")
 CHAT_ROOM_ID = os.getenv("CHAT_ROOM_ID")
 GOOGLE_APP_PASSWORD = os.getenv("GOOGLE_APP_PASSWORD")
-DEBUG = os.getenv("DEBUG")
+DEBUG = True if os.getenv("DEBUG") == "True" else False
