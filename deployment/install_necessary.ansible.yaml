@@ -8,10 +8,6 @@
       ansible.builtin.apt:
         name:
           - git
-    # - name: Install python mysql module to use ansible mysql
-    #   ansible.builtin.apt:
-    #     name:
-    #       - python3-mysqldb
     - name: Install lsof
       ansible.builtin.apt:
         name:

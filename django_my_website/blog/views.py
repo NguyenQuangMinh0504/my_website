@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from config import DATE_FORMAT
-from db import get_blog_tag, increment_view_counter, add_comment
+from db import increment_view_counter, add_comment
 from django_my_website.utils import add_metadata, send_telegram_notification
 
 from .models import Blog, Tag, Blog_Tag, Comment
@@ -34,7 +34,9 @@ def blog(request: HttpRequest):
 
     for blog in blogs:
         blog.slug_url = slugify(blog.title.replace("đ", "d").replace("Đ", "D"))
-        blog.tags = get_blog_tag(blog_id=blog.id)
+        blog.tags = []
+        for blog_tag in Blog_Tag.objects.filter(blog_id=blog.id):
+            blog.tags.append(Tag.objects.get(id=blog_tag.tag_id))
         blog.date = blog.date.strftime(DATE_FORMAT)
 
     return render(request=request,

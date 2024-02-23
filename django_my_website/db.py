@@ -71,12 +71,3 @@ def increment_view_counter(title: str):
     return execute(database="blog",
                    query=f"""UPDATE blog SET total_view = total_view + 1
                    WHERE title = '{title}'""", fetch=None)
-
-
-def get_blog_tag(blog_id: int):
-    return execute(
-        database="blog",
-        query="SELECT name FROM blog_tag INNER JOIN tag ON blog_tag.tag_id = tag.id WHERE blog_id = %s",
-        fetch="all",
-        args=(blog_id, ),
-        )
