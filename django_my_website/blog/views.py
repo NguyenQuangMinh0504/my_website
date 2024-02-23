@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from config import DATE_FORMAT
-from db import increment_view_counter, add_comment
+from db import increment_view_counter
 from django_my_website.utils import add_metadata, send_telegram_notification
 
 from .models import Blog, Tag, Blog_Tag, Comment
@@ -69,8 +69,9 @@ def blog_detail(request: HttpRequest, title: str):
 
 
 def add_comment_view(request: HttpRequest, blog_id):
-    if request.method == "POST":
-        add_comment(blog_id=blog_id, content=request.POST["content"])
+    comment = Comment(content=request.POST["content"],blog_id=blog_id)
+    print(comment)
+    comment.save()
     return HttpResponseRedirect(reverse(viewname="blog-detail",
                                         args=[request.POST["title"]])
                                 )

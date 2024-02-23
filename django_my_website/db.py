@@ -25,15 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def add_comment(blog_id, content):
-    return execute(
-        database="blog",
-        query="INSERT INTO comment (content, blog_id) VALUES(%s, %s)",
-        fetch=None,
-        args=(content, blog_id)
-        )
-
-
 def get_running_data(last_7_days=False):
     if last_7_days is True:
         return execute(
