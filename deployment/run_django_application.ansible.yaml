@@ -3,13 +3,17 @@
   become: yes
   gather_facts: no
   tasks: 
-    - name: Create the virtual environment 
+    - name: Create the virtual environment
+      ansible.builtin.command:
+        chdir: /home/minhnguyenquang
+        cmd: python3 -m venv ./venv
+    - name: Install package in requirements.txt file
       ansible.builtin.pip:
         requirements: /opt/my_website/django_my_website/requirements.txt
-        virtualenv: /opt/my_website_venv
+        virtualenv: /home/minhnguyenquang/venv
         virtualenv_python: python3
     - name: Run gunicorn HTTP server
       community.general.gunicorn:
         app: "django_my_website.wsgi"
         chdir: /opt/my_website/django_my_website
-        venv: /opt/my_website_venv
+        venv: /home/minhnguyenquang/venv

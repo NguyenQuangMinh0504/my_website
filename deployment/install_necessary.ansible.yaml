@@ -1,6 +1,7 @@
 ---
 - hosts: website_server
   become: yes
+  gather_facts: no
   name: Install necessary package
   tasks:
     - name: Install git
@@ -23,10 +24,6 @@
       ansible.builtin.apt:
         name:
           - python3-pip
-    - name: Install virtual env through pip
-      ansible.builtin.pip:
-        name:
-          - virtualenv
     - name: Install apt module for mysqlclient, which is necessary for django mysql engine
     # https://github.com/PyMySQL/mysqlclient
       ansible.builtin.apt:
