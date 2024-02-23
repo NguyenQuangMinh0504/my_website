@@ -25,13 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def get_all_comment(blog_id):
-    return execute(database="blog",
-                   query="SELECT * FROM comment WHERE blog_id = %s",
-                   fetch="all",
-                   args=(blog_id,))
-
-
 def add_comment(blog_id, content):
     return execute(
         database="blog",

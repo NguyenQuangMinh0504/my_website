@@ -91,6 +91,7 @@ DATABASES = {
         'PASSWORD': DB_PASSWORD,
         "NAME": "blog",
         "HOST": DB_HOST,
+        "CONN_MAX_AGE": None,
     }
 }
 
