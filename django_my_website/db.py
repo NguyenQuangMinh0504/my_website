@@ -25,20 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def add_other_data(date: str, study_time: int, play_time: int):
-    return execute(database="my_data",
-                   query=f"""INSERT INTO daily_activities
-                    VALUES('{date}', {study_time}, {play_time})""",
-                   fetch=None
-                   )
-
-
-def get_other_data():
-    return execute(database="my_data",
-                   query="SELECT * FROM daily_activities",
-                   fetch="all")
-
-
 def increment_view_counter(title: str):
     return execute(database="blog",
                    query=f"""UPDATE blog SET total_view = total_view + 1

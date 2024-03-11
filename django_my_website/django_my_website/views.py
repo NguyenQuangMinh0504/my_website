@@ -51,16 +51,6 @@ def website_traffic_view(request: HttpRequest):
                   context=context)
 
 
-def add_data_view(request: HttpRequest):
-    send_telegram_notification(
-        reverse(viewname="add-data") + add_metadata(request))
-    context = {}
-    context["title"] = "Add data"
-    context["canonical_link"] = "https://saugau.com/add-data"
-    return render(request=request, template_name="add_data.html",
-                  context=context)
-
-
 def test_view(request: HttpRequest):
     # send_telegram_notification(
     #     reverse(viewname="test") + add_metadata(request))
