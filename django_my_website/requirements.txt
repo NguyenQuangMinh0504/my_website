@@ -1,15 +1,11 @@
 # Web application
 Django
-# Visualization
-matplotlib
 # Databases connector
 mysql-connector-python
 # wsgi web http server
 gunicorn
 # for loading environment variable from .env
 python-dotenv
-# Prometheus
-prometheus-client
 # Sending telegram
 telebot
 # IP Geolocation
