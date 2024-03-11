@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from config import DATE_FORMAT
-from db import increment_view_counter
 from django_my_website.utils import add_metadata, send_telegram_notification
 
 from .models import Blog, Tag, Blog_Tag, Comment
@@ -54,9 +53,9 @@ def blog_detail(request: HttpRequest, title: str):
         send_telegram_notification(
             reverse(viewname="blog-detail", args=[title]) + meta_data
             )
-
-    increment_view_counter(title=title.replace("-", " "))
     blog = get_object_or_404(Blog, title=title.replace("-", " "))
+    blog.total_view += 1
+    blog.save()
     comments = Comment.objects.filter(blog_id=blog.id)
     return render(
         request=request,
