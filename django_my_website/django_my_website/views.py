@@ -2,8 +2,7 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from .utils import generate_graph, send_telegram_notification, add_metadata
 from django.urls import reverse
-from db import (get_running_data,
-                add_running_data, add_other_data)
+from db import add_other_data
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK
 
 
@@ -39,32 +38,6 @@ def homepage(request: HttpRequest):
         context["user_cookie"] = request.COOKIES["user_cookie"]
     response = render(request, "homepage.html", context=context)
     return response
-
-
-def running_view(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="running") + add_metadata(request)
-    #     )
-    if request.method == "POST":
-        data = request.POST
-        add_running_data(date=data["date"],
-                         duration=data["duration"],
-                         distance=data["distance"])
-        generate_graph()
-        return HttpResponseRedirect(reverse(viewname="running"))
-    context = {}
-    context["title"] = "Chạy bộ"
-    context["canonical_link"] = "https://saugau.com/running"
-    counter = 0
-    for row in reversed(get_running_data()):
-        if row["distance"] > 0:
-            counter += 1
-        else:
-            break
-    context["consecutive_day"] = counter
-    return render(request=request,
-                  template_name="running.html",
-                  context=context)
 
 
 def website_traffic_view(request: HttpRequest):

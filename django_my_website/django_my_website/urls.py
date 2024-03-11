@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import (about_me, homepage,
-                    running_view,
                     website_traffic_view, test_view,
                     statistics_view, add_data_view, list_100_view)
 
@@ -26,7 +25,6 @@ urlpatterns = [
     path(route="", view=homepage, name="homepage"),
     path(route="accounts/", view=include("django.contrib.auth.urls")),
     path('admin', admin.site.urls),
-    path("running", view=running_view, name="running"),
     path(route="blog/", view=include("blog.urls")),
     path(route="about-me", view=about_me, name="about-me"),
     path(route="website-traffic", view=website_traffic_view,

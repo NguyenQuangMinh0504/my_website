@@ -25,25 +25,6 @@ def execute(database: str, query: str, fetch: str, args: tuple = None):
     return result
 
 
-def get_running_data(last_7_days=False):
-    if last_7_days is True:
-        return execute(
-            database="my_data",
-            query="SELECT * FROM running_data ORDER BY day DESC LIMIT 7",
-            fetch="all")
-    return execute(database="my_data",
-                   query="SELECT * FROM running_data ORDER BY day",
-                   fetch="all")
-
-
-def add_running_data(date: str, duration: int, distance: float):
-    return execute(database="my_data",
-                   query=f"""INSERT INTO running_data
-                    VALUES('{date}', {duration}, {distance})""",
-                   fetch=None
-                   )
-
-
 def add_other_data(date: str, study_time: int, play_time: int):
     return execute(database="my_data",
                    query=f"""INSERT INTO daily_activities
