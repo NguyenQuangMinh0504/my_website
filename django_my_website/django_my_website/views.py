@@ -1,8 +1,7 @@
-from django.http import HttpRequest, HttpResponseRedirect
+from django.http import HttpRequest
 from django.shortcuts import render
-from .utils import generate_graph, send_telegram_notification, add_metadata
+from .utils import send_telegram_notification, add_metadata
 from django.urls import reverse
-from db import add_other_data
 from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK
 
 
@@ -49,22 +48,6 @@ def website_traffic_view(request: HttpRequest):
     context["ip_graph_link"] = IP_GRAPH_LINK
     context["request_graph_link"] = REQUEST_GRAPH_LINK
     return render(request=request, template_name="website_traffic.html",
-                  context=context)
-
-
-def statistics_view(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="statistics") + add_metadata(request))
-    if request.method == "POST":
-        data = request.POST
-        add_other_data(date=data["date"], study_time=data["study_time"],
-                       play_time=data["play_time"])
-        generate_graph()
-        return HttpResponseRedirect(redirect_to=reverse(viewname="statistics"))
-    context = {}
-    context["title"] = "Statistics"
-    context["canonical_link"] = "https://saugau.com/statistics"
-    return render(request=request, template_name="statistics.html",
                   context=context)
 
 
