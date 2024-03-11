@@ -17,8 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import (about_me, homepage,
-                    website_traffic_view, test_view, list_100_view)
+from .views import (about_me, homepage, test_view, list_100_view)
 
 urlpatterns = [
     path(route="", view=homepage, name="homepage"),
@@ -26,8 +25,6 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path(route="blog/", view=include("blog.urls")),
     path(route="about-me", view=about_me, name="about-me"),
-    path(route="website-traffic", view=website_traffic_view,
-         name="website-traffic"),
     path(route="test", view=test_view, name="test"),
     path(route="list-100", view=list_100_view, name="list-100"),
 ]

@@ -39,18 +39,6 @@ def homepage(request: HttpRequest):
     return response
 
 
-def website_traffic_view(request: HttpRequest):
-    # send_telegram_notification(
-    #     reverse(viewname="website-traffic") + add_metadata(request))
-    context = {}
-    context["title"] = "Website traffic"
-    context["canonical_link"] = "https://saugau.com/website-traffic"
-    context["ip_graph_link"] = IP_GRAPH_LINK
-    context["request_graph_link"] = REQUEST_GRAPH_LINK
-    return render(request=request, template_name="website_traffic.html",
-                  context=context)
-
-
 def test_view(request: HttpRequest):
     # send_telegram_notification(
     #     reverse(viewname="test") + add_metadata(request))
