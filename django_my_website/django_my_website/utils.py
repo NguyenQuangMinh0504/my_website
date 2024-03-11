@@ -1,11 +1,12 @@
-
+"""Util function"""
 from django.http import HttpRequest
+import telebot
 from ip2geotools.databases.noncommercial import DbIpCity
 from config import BOT_API_TOKEN, CHAT_ROOM_ID
-import telebot
 
 
 def send_telegram_notification(message: str):
+    """Sending notification to telegram chat room"""
     bot = telebot.TeleBot(BOT_API_TOKEN)
     bot.send_message(CHAT_ROOM_ID, message)
 

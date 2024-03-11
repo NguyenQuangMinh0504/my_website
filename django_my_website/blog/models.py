@@ -11,7 +11,7 @@ class Blog(models.Model):
     date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
     class Meta:
         db_table = "blog"

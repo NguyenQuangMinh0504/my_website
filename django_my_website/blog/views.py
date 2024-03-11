@@ -68,6 +68,7 @@ def blog_detail(request: HttpRequest, title: str):
 
 
 def add_comment_view(request: HttpRequest, blog_id):
+    """Add comment view"""
     comment = Comment(content=request.POST["content"], blog_id=blog_id)
     comment.save()
     return HttpResponseRedirect(reverse(viewname="blog-detail",

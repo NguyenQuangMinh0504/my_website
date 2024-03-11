@@ -1,5 +1,5 @@
-import dotenv
 import os
+import dotenv
 dotenv.load_dotenv()
 DB_HOST = os.getenv("DB_HOST")
 DB_PASSWORD = os.getenv("DB_PASSWORD")

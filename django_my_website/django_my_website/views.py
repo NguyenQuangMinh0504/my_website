@@ -1,11 +1,12 @@
+"""Django view, Handle logic of website"""
 from django.http import HttpRequest
 from django.shortcuts import render
-from .utils import send_telegram_notification, add_metadata
 from django.urls import reverse
-from config import IP_GRAPH_LINK, REQUEST_GRAPH_LINK
+from .utils import send_telegram_notification, add_metadata
 
 
 def about_me(request: HttpRequest):
+    """About me view """
     meta_data = add_metadata(request)
     if meta_data != "":
         send_telegram_notification(
@@ -17,6 +18,7 @@ def about_me(request: HttpRequest):
 
 
 def list_100_view(request: HttpRequest):
+    """List 100 view"""
     meta_data = add_metadata(request)
     if meta_data != "":
         send_telegram_notification(
@@ -28,6 +30,7 @@ def list_100_view(request: HttpRequest):
 
 
 def homepage(request: HttpRequest):
+    """Homepage view"""
     # Disable sending telegram in homepage
     # meta_data = add_metadata(request)
     # if meta_data != "":
@@ -40,6 +43,7 @@ def homepage(request: HttpRequest):
 
 
 def test_view(request: HttpRequest):
+    """Test view"""
     # send_telegram_notification(
     #     reverse(viewname="test") + add_metadata(request))
     return render(request=request, template_name="test.html", context={})
