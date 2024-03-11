@@ -9,7 +9,7 @@ from django_my_website.utils import add_metadata, send_telegram_notification
 from .models import Blog, Tag, Blog_Tag, Comment
 
 
-def blog(request: HttpRequest):
+def blog_view(request: HttpRequest):
     meta_data = add_metadata(request)
     if meta_data != "":
         send_telegram_notification(

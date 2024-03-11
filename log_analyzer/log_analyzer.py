@@ -1,7 +1,7 @@
-from prometheus_client import start_http_server, Counter
 import re
 import time
 import os
+from prometheus_client import start_http_server, Counter
 import dotenv
 dotenv.load_dotenv("../django_my_website/.env")
 ACCESS_LOG_PATH = os.getenv("ACCESS_LOG_PATH")
