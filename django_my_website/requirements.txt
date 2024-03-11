@@ -1,7 +1,5 @@
 # Web application
 Django
-# Databases connector
-mysql-connector-python
 # wsgi web http server
 gunicorn
 # for loading environment variable from .env
