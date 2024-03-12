@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.utils.text import slugify
@@ -69,6 +69,8 @@ def blog_detail(request: HttpRequest, title: str):
 
 def add_comment_view(request: HttpRequest, blog_id):
     """Add comment view"""
+    if request.POST.get("content") is None:
+        return HttpResponseBadRequest()
     comment = Comment(content=request.POST["content"], blog_id=blog_id)
     comment.save()
     return HttpResponseRedirect(reverse(viewname="blog-detail",
