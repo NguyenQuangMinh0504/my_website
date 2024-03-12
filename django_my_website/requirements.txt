@@ -12,3 +12,8 @@ ip2geotools
 ansible
 # For using default mysql django module
 mysqlclient
+# static code analyzer
+pylint
+# plugin for django pylint
+pylint-django
+#
