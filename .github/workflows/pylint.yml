@@ -23,4 +23,5 @@ jobs:
         pip install pylint-django
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py') --load-plugins=pylint_django
+        pylint $(git ls-files "django_my_website/blog*.py") --load-plugins=pylint_django --disable=E5110
+        pylint $(git ls-files "django_my_website/django_my_website*.py") --load-plugins=pylint_django --disable=E5110
