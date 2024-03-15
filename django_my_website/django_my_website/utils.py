@@ -28,6 +28,7 @@ def add_metadata(request: HttpRequest) -> str:
     for bot in ["http://www.google.com/bot.html",
                 "http://www.bing.com/bingbot.htm",
                 "spider-feedback@bytedance.com",
+                "http://www.semrush.com/bot.html"
                 "IonCrawl"]:
         if bot in user_agent:
             return ""
