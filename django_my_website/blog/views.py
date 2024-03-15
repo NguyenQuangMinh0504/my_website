@@ -11,6 +11,7 @@ from .models import Blog, Tag, BlogTag, Comment
 
 
 def blog_view(request: HttpRequest):
+    """Implement logic of blog page"""
     meta_data = add_metadata(request)
     if meta_data != "":
         send_telegram_notification(

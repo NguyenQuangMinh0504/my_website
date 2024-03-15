@@ -1,3 +1,4 @@
+"""Define Blog URL"""
 from django.urls import path
 from .views import blog_view, blog_detail, add_comment_view
 
