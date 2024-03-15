@@ -1,3 +1,4 @@
+"""Handle logics of website"""
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
