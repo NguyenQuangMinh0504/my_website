@@ -13,16 +13,13 @@ def send_telegram_notification(message: str):
 
 def get_ip_location(ip_address: str):
     """Return location of request from ip"""
-    try:
-        response = DbIpCity.get(ip_address, api_key='free')  # 'free' key for the free non-commercial version
-        city = response.city
-        region = response.region
-        country = response.country
-        location = f"{city}, {region}, {country}"
-        return location
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+    response = DbIpCity.get(ip_address, api_key='free')  # 'free' key for the free non-commercial version
+    city = response.city
+    region = response.region
+    country = response.country
+    location = f"{city}, {region}, {country}"
+    return location
+
 
 
 def add_metadata(request: HttpRequest) -> str:
