@@ -21,7 +21,6 @@ def get_ip_location(ip_address: str):
     return location
 
 
-
 def add_metadata(request: HttpRequest) -> str:
     """Return meta data of request"""
     user_agent = request.META["HTTP_USER_AGENT"]
