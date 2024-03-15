@@ -44,6 +44,7 @@ class BlogTag(models.Model):
 
 
 class Comment(models.Model):
+    """Comment table"""
     user = models.CharField(max_length=255, default="anonymous")
     content = models.TextField()
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
