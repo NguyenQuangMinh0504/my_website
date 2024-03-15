@@ -50,6 +50,7 @@ def blog_view(request: HttpRequest):
 
 
 def blog_detail(request: HttpRequest, title: str):
+    """Implement logic of blog detail page."""
     meta_data = add_metadata(request)
     if meta_data != "":
         send_telegram_notification(
