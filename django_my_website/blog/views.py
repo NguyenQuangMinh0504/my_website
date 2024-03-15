@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from config import DATE_FORMAT
 from django_my_website.utils import add_metadata, send_telegram_notification
 
-from .models import Blog, Tag, Blog_Tag, Comment
+from .models import Blog, Tag, BlogTag, Comment
 
 
 def blog_view(request: HttpRequest):
@@ -27,7 +27,7 @@ def blog_view(request: HttpRequest):
     if tag is not None:
         tag_id = Tag.objects.get(name=tag).id
         blogs = []
-        for blog in Blog_Tag.objects.filter(tag=tag_id):
+        for blog in BlogTag.objects.filter(tag=tag_id):
             blogs.append(blog.blog)
 
     tags = Tag.objects.all()
@@ -35,7 +35,7 @@ def blog_view(request: HttpRequest):
     for blog in blogs:
         blog.slug_url = slugify(blog.title.replace("đ", "d").replace("Đ", "D"))
         blog.tags = []
-        for blog_tag in Blog_Tag.objects.filter(blog_id=blog.id):
+        for blog_tag in BlogTag.objects.filter(blog_id=blog.id):
             blog.tags.append(Tag.objects.get(id=blog_tag.tag_id))
         blog.date = blog.date.strftime(DATE_FORMAT)
 

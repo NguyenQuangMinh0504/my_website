@@ -30,7 +30,7 @@ class Tag(models.Model):
         db_table = "tag"
 
 
-class Blog_Tag(models.Model):
+class BlogTag(models.Model):
     """Blog Tag Table"""
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
