@@ -1,9 +1,11 @@
+"""Define MySQL Table using Django Model"""
 from django.db import models
 
 # Create your models here.
 
 
 class Blog(models.Model):
+    """Blog table"""
     title = models.CharField(max_length=255)
     snippet = models.CharField(max_length=255)
     content = models.TextField()
@@ -18,6 +20,7 @@ class Blog(models.Model):
 
 
 class Tag(models.Model):
+    """Tag Table"""
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -28,6 +31,7 @@ class Tag(models.Model):
 
 
 class Blog_Tag(models.Model):
+    """Blog Tag Table"""
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
