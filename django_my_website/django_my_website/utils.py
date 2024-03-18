@@ -12,7 +12,7 @@ def send_telegram_notification(message: str):
 
 
 def get_ip_location(ip_address: str):
-    """Return location of request from ip"""
+    # """Return location of request from ip"""
     response = DbIpCity.get(ip_address, api_key='free')
     # 'free' key for the free non-commercial version
     city = response.city
