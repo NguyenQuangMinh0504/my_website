@@ -20,7 +20,7 @@ def blog_view(request: HttpRequest):
     order = request.GET.get("order")
 
     if order is not None:
-        blogs = Blog.objects.order_by("total_view")
+        blogs = Blog.objects.order_by("-total_view")
     else:
         blogs = Blog.objects.order_by("-id")
 
