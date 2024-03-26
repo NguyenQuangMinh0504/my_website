@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Khắc phục lỗi file môi trường với github webhook</h1>
+<br>
+<hr>
+<strong>Hiện tượng:</strong> Sau khi deploy tính năng mới website đã bị sập.
+<br>
+
+<strong>Nguyên nhân:</strong> Khi phát triển tính năng đã tải package mới với pip. Mặc dù mình đã thêm tên package mới vào file requirements.txt nhưng mình đã quên việc tải package trên env của server website.
+<br>
+<strong>Cách khắc phục:</strong> Dùng <a href="https://docs.github.com/en/webhooks">github webhook</a>. Khi dùng webhook github sẽ gửi request POST đến endpoint do mình đề ra. Mình sẽ dựa vào trường chứa các file bị chỉnh sửa trong commit. Nếu xuất hiện file môi trường trong đó, pull commit về và tự động tải package.
+
+<br>
+<br>
+Ví dụ code pull github và tải package python với pip dùng framework django
+
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;"><span style="color:rgb(68, 68, 68); font-weight:700;">from</span> django.http <span style="color:rgb(68, 68, 68); font-weight:700;">import</span> HttpResponse, HttpRequest
+   <span style="color:rgb(68, 68, 68); font-weight:700;">from</span> django.views.decorators.csrf <span style="color:rgb(68, 68, 68); font-weight:700;">import</span> csrf_exempt
+   <span style="color:rgb(68, 68, 68); font-weight:700;">import</span> json
+   <span style="color:rgb(68, 68, 68); font-weight:700;">import</span> subprocess
+   <span style="color:rgb(68, 68, 68); font-weight:700;">import</span> os
+   
+   
+   <span style="color:rgb(31, 113, 153); font-weight:400;">@csrf_exempt</span>
+   <span style="color:rgb(68, 68, 68); font-weight:700;">def</span> <span class="hljs-title function_">github_view</span>(<span style="color:rgb(68, 68, 68); font-weight:400;">request: HttpRequest</span>):
+       data = json.loads(request.POST[<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;payload&quot;</span>])
+       os.chdir(<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;github_repo_path&quot;</span>)
+       subprocess.run([<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;git&quot;</span>, <span style="color:rgb(136, 0, 0); font-weight:400;">&quot;pull&quot;</span>], check=<span style="color:rgb(120, 169, 96); font-weight:400;">True</span>)
+       <span style="color:rgb(68, 68, 68); font-weight:700;">if</span> <span style="color:rgb(136, 0, 0); font-weight:400;">&quot;requirements.txt&quot;</span> <span style="color:rgb(68, 68, 68); font-weight:700;">in</span> data[<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;head_commit&quot;</span>][<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;modified&quot;</span>]:
+           command = [
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;/opt/my_website_venv/bin/python3.9&#x27;</span>,
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;-m&#x27;</span>,
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;pip&#x27;</span>,
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;install&#x27;</span>,
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;-r&#x27;</span>,
+               <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;/opt/my_website/django_my_website/requirements.txt&#x27;</span>
+               ]
+           subprocess.run(command, check=<span style="color:rgb(120, 169, 96); font-weight:400;">True</span>)
+       <span style="color:rgb(68, 68, 68); font-weight:700;">return</span> HttpResponse(content=<span style="color:rgb(136, 0, 0); font-weight:400;">&quot;Success&quot;</span>)</code></pre>
+
+Fun fact: Trong thời gian mình làm việc tại công ty mình cũng đã chứng kiến lỗi trong lúc deploy code product. Và việc quản lý môi trường không tốt dẫn đến việc không thể deploy code trên server mới, gây ra khá nhiều vấn đề liên quan.
+<!-- Không cần thêm <br> cuối trang do phần sau đã có <br> -->
+<br>
+<br>
+{% include "comment.html" %}
+{% endblock %}

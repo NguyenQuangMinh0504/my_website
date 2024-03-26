@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Một số lỗi gặp phải trong quá trình deploy và vận hành website</h1>
+<br>
+<h2>Website treo</h2>
+<strong>Hiện tượng</strong>
+<li>Kết nối đến server bị timeout</li>
+<li>Không thể ssh đến server</li>
+<li>Website trả kết quả ra quá chậm</li>
+<br>
+<strong>Những gì thực hiện</strong>
+<li>Tạo server mới, deploy 1 click.</li>
+<li>Sau khi tạo, 1 thời gian server cũng đơ.</li>
+<li>Xóa đi tạo lại, tích hợp monitor agent của Google Cloud</li>
+<li>Check được thông tin process, thông tin CPU, thông tin RAM. CPU 100%, trong đó 70% CPU usage thuộc về process kswapd0. Memory 85%</li>
+<li>Debug process nào chiếm nhiều RAM và CPU, fix.</li>
+<br>
+<strong>Nguyên nhân:</strong> <p>mysql dùng nhiều ram -> kswapd0 tăng -> cpu tăng -> treo server.</p>
+<strong>Cách khắc phục: </strong> Làm theo hướng dẫn tại <a href="https://stackoverflow.com/questions/45516971/why-is-mysql-consuming-so-much-memory">https://stackoverflow.com/questions/45516971/why-is-mysql-consuming-so-much-memory</a>
+<br>
+<br>
+<strong>Kết quả</strong>
+<li>Memory 85% -> 61%</li>
+<li>Process by memory /usr/sbin/mysqld 376 -> 154 MiB</li>
+<li>Process by state 861 -> 614 / 1000 MiB</li>
+<li>CPU 66% (100% khi treo) -> 10% </li>
+<br>
+<strong>Rút ra</strong>
+<li>Khả năng monitor (Ram/CPU/process) và deploy 1 click là rất quan trọng.</li>
+<br>
+<hr>
+<h2>Deploy web application lỗi</h2>
+<strong>Nguyên nhân: </strong>Không đẩy toàn bộ code lên git. Do đó code chạy bình thường trên local nhưng code trên git bị thiếu mất module dẫn đến không chạy.
+<br><br>
+{% include "comment.html" %}
+{% endblock %}

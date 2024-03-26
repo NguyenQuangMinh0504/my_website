@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>WSGI</h1>
+<br>
+<li>
+    Gunicorn and NGINX: <a href="https://vsupalov.com/gunicorn-and-nginx/">https://vsupalov.com/gunicorn-and-nginx/</a> (Really useful, clear and concise explanation)
+</li>
+<li>
+    Django Deployment Book: <a href="https://djangodeployment.com/">https://djangodeployment.com/</a>
+</li>
+<li>
+    PEP 333: <a href="https://peps.python.org/pep-0333/">https://peps.python.org/pep-0333/</a>
+</li>
+<li>
+    WSGI: <a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface</a>
+</li>
+<li>
+    CGI: <a href="https://en.wikipedia.org/wiki/Common_Gateway_Interface">https://en.wikipedia.org/wiki/Common_Gateway_Interface</a>
+</li>
+<li>
+    FastCGI: <a href="https://en.wikipedia.org/wiki/FastCGI">https://en.wikipedia.org/wiki/FastCGI</a>
+</li>
+{% include "comment.html" %}
+{% endblock %}

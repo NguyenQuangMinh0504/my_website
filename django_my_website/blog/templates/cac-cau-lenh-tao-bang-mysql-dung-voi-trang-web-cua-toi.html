@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Các câu lệnh tạo bảng MySQL dùng với website database</h1>
+Docs MySQL: <a href="https://dev.mysql.com/doc/refman/8.1/en/">https://dev.mysql.com/doc/refman/8.1/en/</a>
+<pre>
+ <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;"><span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> DATABASE my_data;
+USE my_data;
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> <span style="color:rgb(68, 68, 68); font-weight:700;">TABLE</span> `running_data` (
+  `<span style="color:rgb(68, 68, 68); font-weight:700;">day</span>` <span style="color:rgb(136, 0, 0); font-weight:400;">date</span> <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `duration` <span style="color:rgb(136, 0, 0); font-weight:400;">int</span> <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `distance` <span style="color:rgb(136, 0, 0); font-weight:400;">float</span> <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>
+);
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> DATABASE blog;
+USE blog;
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> <span style="color:rgb(68, 68, 68); font-weight:700;">TABLE</span> `blog` (
+  `id` <span style="color:rgb(136, 0, 0); font-weight:400;">int</span> <span style="color:rgb(68, 68, 68); font-weight:700;">PRIMARY</span> KEY <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span> AUTO_INCREMENT,
+  `title` <span style="color:rgb(136, 0, 0); font-weight:400;">varchar</span>(<span style="color:rgb(136, 0, 0); font-weight:400;">255</span>) <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `snippet` <span style="color:rgb(136, 0, 0); font-weight:400;">varchar</span>(<span style="color:rgb(136, 0, 0); font-weight:400;">255</span>) <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `content` text <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `total_view` <span style="color:rgb(136, 0, 0); font-weight:400;">int</span> <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> &quot;0&quot;,
+  `<span style="color:rgb(136, 0, 0); font-weight:400;">date</span>` <span style="color:rgb(136, 0, 0); font-weight:400;">date</span> <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> (curdate())
+);
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> <span style="color:rgb(68, 68, 68); font-weight:700;">TABLE</span> `comment` (
+  `id` <span style="color:rgb(136, 0, 0); font-weight:400;">int</span> <span style="color:rgb(68, 68, 68); font-weight:700;">PRIMARY</span> KEY <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span> AUTO_INCREMENT,
+  `<span style="color:rgb(68, 68, 68); font-weight:700;">user</span>` <span style="color:rgb(136, 0, 0); font-weight:400;">varchar</span>(<span style="color:rgb(136, 0, 0); font-weight:400;">255</span>) <span style="color:rgb(68, 68, 68); font-weight:700;">DEFAULT</span> &quot;anonymous&quot;,
+  `content` text <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>,
+  `blog_id` <span style="color:rgb(136, 0, 0); font-weight:400;">int</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NOT</span> <span style="color:rgb(68, 68, 68); font-weight:700;">NULL</span>
+);
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">CREATE</span> INDEX `blog_id` <span style="color:rgb(68, 68, 68); font-weight:700;">ON</span> `comment` (`blog_id`);
+
+<span style="color:rgb(68, 68, 68); font-weight:700;">ALTER</span> <span style="color:rgb(68, 68, 68); font-weight:700;">TABLE</span> `comment` <span style="color:rgb(68, 68, 68); font-weight:700;">ADD</span> <span style="color:rgb(68, 68, 68); font-weight:700;">CONSTRAINT</span> `comment_ibfk_1` <span style="color:rgb(68, 68, 68); font-weight:700;">FOREIGN</span> KEY (`blog_id`) <span style="color:rgb(68, 68, 68); font-weight:700;">REFERENCES</span> `blog` (`id`);</code></pre>
+<h5>Dump MySQL databases</h5>
+<pre><code id="dump_mysql" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">mysqldump -u root -p <span style="color:rgb(68, 68, 68); font-weight:400;">--all-databases</span> &gt; all_data.sql</span></code></pre>
+<h5>Load MySQL databases</h5>
+<pre><code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">mysql -u root -p &lt; all_data.sql</span></code></pre>
+{% include "comment.html" %}
+{% endblock %}

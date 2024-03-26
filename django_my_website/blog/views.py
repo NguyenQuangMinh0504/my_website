@@ -62,7 +62,7 @@ def blog_detail(request: HttpRequest, title: str):
     comments = Comment.objects.filter(blog_id=blog.id)
     return render(
         request=request,
-        template_name="blog_detail.html",
+        template_name=f"{title}.html",
         context={
             "blog": blog,
             "comments": comments,

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Python3 Stuff</h1>
+<hr>
+Python3 exception <a href="https://docs.python.org/3/library/exceptions.html">https://docs.python.org/3/library/exceptions.html</a><br>
+<br>
+Python Path MacOS
+<ul>
+    <li>Install through Python homepage: <pre>
+        <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">/Library/Frameworks/Python.framework/Versions/3.x</code></pre></li>
+    <li>Install through homebrew: <pre>
+        <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">/opt/homebrew/bin/python3.x</code></pre></li>
+</ul>
+<hr>
+<h1>Pandas Module Stuffs</h1>
+<br>
+Pandas cheat sheat <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a><br><br>
+Drop inplace all rows which column foo has value equals bar
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">df.drop(<span style="color:rgb(57, 115, 0); font-weight:400;">df</span>[<span style="color:rgb(57, 115, 0); font-weight:400;">df</span>[<span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;foo&#x27;</span>] == <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;bar&#x27;</span>].index, inplace=True)</code></pre>
+Drop inplace all rows which column foo has value in list [bar1, bar2, bar3]
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">df.drop(<span style="color:rgb(57, 115, 0); font-weight:400;">df</span>[<span style="color:rgb(57, 115, 0); font-weight:400;">df</span>[<span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;foo&#x27;</span>].isin([<span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;bar1&#x27;</span>, <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;bar2&#x27;</span>, <span style="color:rgb(136, 0, 0); font-weight:400;">&#x27;bar3&#x27;</span>])].index, inplace=True)</code></pre>
+Display all column
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;"><span style="color:rgb(68, 68, 68); font-weight:400;">pd.options.display.max_columns</span> = None</code></pre>
+Display full text length
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;"><span style="color:rgb(68, 68, 68); font-weight:400;">pd.options.display.max_colwidth</span> = None</code></pre>
+Get column with nan value
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">df<span style="color:rgb(136, 0, 0); font-weight:400;">.columns</span><span style="color:rgb(188, 96, 96); font-weight:400;">[df.isna().any()]</span></code></pre>
+Get number of row with nan value
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">df<span style="color:rgb(136, 0, 0); font-weight:400;">.isnull</span>()<span style="color:rgb(136, 0, 0); font-weight:400;">.any</span>(axis=<span style="color:rgb(136, 0, 0); font-weight:400;">1</span>)<span style="color:rgb(136, 0, 0); font-weight:400;">.sum</span>()</code></pre>
+<hr>
+    <h1>Useful package</h1>
+<h3>Web development</h3>
+<strong>Django: Web framework for building web app</strong>
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">pip install Django</code></pre>
+<strong>Gunicorn: Python WSGI Server</strong>
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">pip install gunicorn</code></pre>
+<h3>AI</h3>
+<strong>Jupyter notebook</strong>
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">pip install notebook</code></pre>
+{% include "comment.html" %}
+{% endblock %}

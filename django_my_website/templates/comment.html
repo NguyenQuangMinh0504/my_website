@@ -1,0 +1,31 @@
+{% load static %}
+<br>
+Ngày đăng: {{ blog.date }} 
+<br>
+<img src="{% static 'images/statistic_icon.webp' %}" style="position: relative; bottom: 2px;"class="img-fluid">
+{{ blog.total_view }} total views
+<hr>
+<h2>Comment</h2>
+{% if not comments %}
+    Hiện tại chưa có comment nào...
+{% else %}
+{% endif %}
+{% for comment in comments %}
+    <strong>{{comment.user}}: </strong>{{comment.content}}<br>
+{% endfor %}
+<br>
+<hr>
+<form action="{% url 'add-comment' blog.id %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="hidden" name="title" value="{{ blog.title|slugify }}">
+        <label class="form-label">Để lại comment bạn tại đây</label>
+        <textarea class="form-control" name="content" rows="4"></textarea>
+    </div>
+    <br>
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">Comment</button>
+    </div>
+</form>
+<br>
+<br>

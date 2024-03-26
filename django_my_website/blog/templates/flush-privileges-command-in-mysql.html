@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>FLUSH PRIVILEGES Command MySQL</h1>
+The <code class="bg-light border">FLUSH PRIVILEGES</code> command in MySQL is used to reload the grant tables. This means that it forces MySQL to read the grant tables from disk again and apply any changes that have been made to them.
+<br>
+<br>
+The grant tables contain information about the privileges that have been granted to users and roles. When you change the privileges for a user or role, the changes are not applied immediately. Instead, they are cached in memory. The <code class="bg-light border">FLUSH PRIVILEGES</code> command forces MySQL to flush the cache and read the grant tables from disk again.
+<br>
+The <code class="bg-light border">FLUSH PRIVILEGES</code> command is typically used after you have made changes to the grant tables. For example, if you create a new user or grant a new privilege to an existing user, you should run the <code class="bg-light border">FLUSH PRIVILEGES</code> command to make sure that the changes are applied to all connections.
+<br>
+<br>
+The <code class="bg-light border">FLUSH PRIVILEGES</code> command can also be used to troubleshoot problems with privileges. If you are having problems connecting to a database or accessing a table, you can try running the FLUSH PRIVILEGES command to see if it resolves the problem.
+Here is an example of how to use the <code class="bg-light border">FLUSH PRIVILEGES</code> command:
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">mysql&gt; FLUSH PRIVILEGES;
+Query OK, <span style="color:rgb(136, 0, 0); font-weight:400;">0</span> rows <span class="hljs-title function_">affected</span> <span style="color:rgb(68, 68, 68); font-weight:400;">(<span style="color:rgb(136, 0, 0); font-weight:400;">0.00</span> sec)</span></code></pre>
+
+This command will force MySQL to flush the grant tables and read them from disk again.
+<br><br>
+It is important to note that the <code class="bg-light border">FLUSH PRIVILEGES</code> command will disconnect all current connections to the MySQL server. This means that any users who are currently logged in will be disconnected.
+<br><br>
+If you are running the <code class="bg-light border">FLUSH PRIVILEGES</code> command on a production server, you should make sure that there are no users who are currently logged in. You can use the <code class="bg-light border">SHOW PROCESSLIST;</code> command to check the list of active connections.
+<br><br>
+The <code class="bg-light border">FLUSH PRIVILEGES</code> command is a powerful tool that can be used to manage privileges in MySQL. However, it is important to use it carefully and to understand the potential consequences.
+<br><br>
+Here are some of the benefits of using the <code class="bg-light border">FLUSH PRIVILEGES</code> command:
+<li>It ensures that all changes to the grant tables are applied to all connections.</li>
+<li>It can be used to troubleshoot problems with privileges.</li>
+<li>It can be used to reset the privileges for a user or role.</li>
+<br>
+Here are some of the risks of using the <code class="bg-light border">FLUSH PRIVILEGES</code> command:
+<li>It can disconnect all current connections to the MySQL server.</li>
+<li>It can be used to accidentally grant or revoke privileges to users.</li>
+<li>It is important to weigh the benefits and risks of using the <code class="bg-light border">FLUSH PRIVILEGES</code> command before using it.</li>
+<br>
+Source: Google Bard
+<br>
+<br>
+{% include "comment.html" %}
+{% endblock %}

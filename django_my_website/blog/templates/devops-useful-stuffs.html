@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>
+    DevOps useful stuffs
+</h1>
+<hr>
+<h2>Các đoạn hay từ quyển The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations.</h2>
+<br>
+<h3>Leader and Worker</h3>
+<h4>Worker</h4>
+We explicitly state the problem we are seeking to solve, our hypothesis of how our proposed countermeasure will solve it, our methods for testing that hypothesis, our interpretation of the results, and our use of learnings to inform the next iteration.
+<br>
+<br>
+<h4>Leader</h4>
+The leader helps coach the person conducting the experiment with questions that may include:
+<li>What was your last step and what happened?</li>
+<li>What did you learn?</li>
+<li>What is your condition now?</li>
+<li>What is your next target condition?</li>
+<li>What obstacle are you working on now?</li>
+<li>What is your next step?</li>
+<li>What is your expected outcome?</li>
+<li>When can we check?</li>
+<br>
+<h3>Invite Ops to our dev standups</h3>
+<p>
+One of the Dev rituals popularized by Scrum is the daily standup (although physically standing up have become distinctly optional in remote teams), a quick meeting where everyone on the team gets together and presents to each other three things: what was done yesterday, what is going to be done today, and what is preventing you from getting your work done. 
+</p>
+<p>
+    The purpose of this ceremony is to radiate information throughout the team and to understand the work that is being done and is going to be done. By having team members present this information to each other, we learn about any tasks that are experiencing roadblocks and discover ways to help each other move our work toward completion. Furthermore, by having managers present, we can quickly resolve prioritization and resource conflicts.
+</p>
+<h3>Development process</h3>
+<p>at the end of each development interval, we must have integrated, tested, working, and potentially shippable code, demonstrated in a production-like environment, created from trunk using a one-click process, and validated with automated tests.</p>
+<hr>
+<h2>Docker</h2>
+<p>Docker can containerize everything, from webserver, web app, to database. It is really easy to clean. Although microservices seem to take lots of space and memory -> Help deliver and set up an app between dev using 1 click, making it independent from programming language and database selections.</p>
+<p>
+Docker helps not to separate between prod env and dev env. This helps dev stay as close to the prod environment as possible.
+<li>Same path</li>
+<li>Same config</li>
+<li>Same package information</li>
+</p>
+<br>
+{% include "comment.html" %}
+{% endblock %}
