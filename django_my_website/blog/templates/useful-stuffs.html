@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>
+    Useful stuffs
+</h1>
+<hr>
+<h2>Useful Websites</h2>
+<h4>Website SEO</h4>
+Pagespeed Insight (<a href="https://pagespeed.web.dev/">https://pagespeed.web.dev/</a>): Tool đánh giá chỉ ra vấn đề website đang gặp phải.
+<br>
+Google Search Console (<a href="https://search.google.com/">https://search.google.com/</a>): Tool theo dõi performance và ranking website. Xem các url nào đã được đánh index.
+<br>
+<h4>Study</h4>
+Libgen (<a href="https://www.libgen.is/">https://www.libgen.is/</a>): Download sách free
+<br>
+Scihub (<a href="https://www.sci-hub.se/">https://www.sci-hub.se/</a>): Download paper và article free
+<h4>Utility</h4>
+Codebeautify highlighter (<a href="https://codebeautify.org/code-highlighter">https://codebeautify.org/code-highlighter</a>): Online syntax highlighter
+<br>
+DBDiagram (<a href="https://dbdiagram.io/">https://dbdiagram.io/</a>): Giúp drawn database. Có thể import file MySQL và export lệnh tạo MySQL. Mình dùng để vẽ database tự động khi import file MySQL và sửa lại lệnh tạo table khi thay đổi cấu trúc database.
+<br>
+Google Gemini (<a href="https://gemini.google.com/app">https://gemini.google.com/app</a>): Google Chatbot. Trả lời khá OK. Có thể đưa nhiều link đọc tham khảo.
+<br>
+Jira Atlassian (<a href="https://www.atlassian.com/software/jira">https://www.atlassian.com/software/jira</a>): Kanban Board. Mình dùng để note việc cần làm theo queue.
+<br>
+<br>
+<h2>Useful commands</h2>
+<h5>Script cài MySQL</h5>
+<pre><code id="script_mysql" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">sudo wget https:<span style="color:rgb(136, 136, 136); font-weight:400;">//repo.mysql.com/mysql-apt-config_0.8.29-1_all.deb</span>
+sudo dpkg -i mysql-apt-config_0<span style="color:rgb(136, 0, 0); font-weight:400;">.8</span><span style="color:rgb(136, 0, 0); font-weight:400;">.29</span><span style="color:rgb(136, 0, 0); font-weight:400;">-1</span>_all.deb
+sudo apt-<span style="color:rgb(68, 68, 68); font-weight:700;">get</span> update
+sudo apt-<span style="color:rgb(68, 68, 68); font-weight:700;">get</span> install mysql-server -y
+sudo rm mysql-apt-config_0<span style="color:rgb(136, 0, 0); font-weight:400;">.8</span><span style="color:rgb(136, 0, 0); font-weight:400;">.29</span><span style="color:rgb(136, 0, 0); font-weight:400;">-1</span>_all.deb</code></pre>
+<h5>Dump MySQL databases</h5>
+<pre><code id="dump_mysql" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">mysqldump -u root -p <span style="color:rgb(68, 68, 68); font-weight:400;">--all-databases</span> &gt; all_data.sql</span></code></pre>
+<h5>Load MySQL databases</h5>
+<pre><code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">mysql -u root -p &lt; all_data.sql</span></code></pre>
+<h5>Tạo ssh key</h5>
+<pre><code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">ssh-keygen</code></pre>
+<h5>Remove known key from IP SSH</h5>
+<pre><code style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">ssh-keygen -R <span style="color:rgb(68, 68, 68); font-weight:400;">&lt;<span style="color:rgb(68, 68, 68); font-weight:700;">host</span>&gt;</span></code></pre>
+<h5>Liệt kê các service đang chạy Linux</h5>
+<pre><code style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">systemctl --<span style="color:rgb(57, 115, 0); font-weight:400;">type</span>=service --state=running</code></pre>
+<h5>Liệt kê toàn bộ process đang chạy Linux</h5>
+<pre><code style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">ps -A</code></pre>
+<h5>Tạo cert thủ công certbot</h5>
+<pre><code style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">certbot certonly <span style="color:rgb(136, 136, 136); font-weight:400;">--manual --preferred-challenges=dns </span></code></pre>
+<br>
+<h2>Most Used App</h2>
+Terminus (<a href="https://termius.com/">https://termius.com/</a>): SSH Terminal. Hỗ trợ nhiều OS
+<br>
+<strong>Tính năng:</strong>
+<li>Nhóm server lại quản lý</li>
+<li>SSH theo user</li>
+<li>Split screen</li>
+<li>Drag item từ các server với nhau</li>
+<li>Thay key ssh nếu thấy host thay đổi</li>
+Visual Studio Code (<a href="https://code.visualstudio.com">https://code.visualstudio.com</a>): IDE phổ biến nhất
+<br>
+Telegram (<a href="https://desktop.telegram.org">https://desktop.telegram.org</a>): App nhắn tin
+<h2>Useful Keyboard Combination MacOS</h2>
+<p><kbd>Ctrl</kbd> <kbd>Space</kbd> <kbd>~</kbd> : Đổi input source</p>
+<p><kbd>Click</kbd> 3 lần: Bôi đen dòng</p>
+<p><kbd>Ctrl</kbd> <kbd>Click dùng 1 ngón</kbd> : Right click (Không dùng được khi chạy 1 số chương trình)</p> 
+<p><kbd>Click dùng 2 ngón</kbd> : Right click</p>
+<h5>Microsoft Word</h5>
+<p><kbd>Ctrl</kbd> <kbd>+</kbd> : Insert equation</p>
+<p><kbd>Ctrl</kbd> <kbd>I</kbd> : In nghiêng phần text trong trường hợp đang bôi đen text, bật tắt in nghiêng trong trường hợp không bôi đen</p>
+<h5>Vscode</h5>
+    <p><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>~</kbd> : Tạo terminal mới</p>
+    <p><kbd>Command</kbd> <kbd>Shift</kbd> <kbd>P</kbd> : Mở Command Palette</p>
+    <p><kbd>Command</kbd> <kbd>P</kbd> : Tìm file</p>
+    <p><kbd>Option</kbd> <kbd><span>&#8593;</span></kbd> : Di chuyển code giữa các dòng</p>
+    <p><kbd>Command</kbd> <kbd><span>&#8592;</span></kbd> : Về đầu dòng</p>
+    <p><kbd>Command</kbd> <kbd>&#92;</kbd> : Split Terminal</p>
+    <strong> Check diff giữa 2 file</strong>
+    <li>Chuột phải vào tên file1, chọn Select for Compare</li>
+    <li>Chuột phải vào tên file2, chọn Compare with Selected</li>
+<br>
+<style>
+    kbd {
+      border-radius: 2px;
+      padding: 2px;
+      border: 1px solid black;
+    }
+</style>
+{% include "comment.html" %}
+{% endblock %}

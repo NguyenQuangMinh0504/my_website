@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Đơn giản quá trình deploy website với ansible và github action</h1>
+<hr>
+Mình có 1 website chạy trên cloud server. Website mình dùng NGINX web server và Gunicorn HTTP server. Mình muốn đơn giản hoá nhất có thể các bước trong quá trình deploy.
+<br>
+<br>
+<strong>Luồng deploy thông thường</strong>
+<br>
+1. Commit code chạy lên github
+<br>
+2. SSH lên server
+<br>
+3. Clode code từ github
+<br>
+4. Reload lại NGINX process
+<br>
+5. Reload lại Gunicorn process
+<br>
+<hr>
+Mình có thể tổng hợp các câu lệnh 3 4 5 thành 1 file execute.sh
+<pre>
+    <code id="htmlViewer" style="color:rgb(68, 68, 68); font-weight:400;background-color:rgb(240, 240, 240);background:rgb(240, 240, 240);display:block;padding: .5em;">#<span style="color:rgb(57, 115, 0); font-weight:400;">execute</span>.sh
+   git clone ...
+   nginx <span style="color:rgb(136, 136, 136); font-weight:400;">--reload</span>
+   gunicorn <span style="color:rgb(136, 136, 136); font-weight:400;">--reload</span></code></pre>
+<strong>Luồng deploy rút gọn</strong>
+<br>
+1. Commit code chạy lên github
+<br>
+2. SSH lên server
+<br>
+3. Chạy file execute.sh
+<br>
+<hr>
+Trong trường hợp website có load balancing và deploy trên nhiều server, mình dùng ansible để deploy trên nhiều server cùng lúc. Ansible (<a href="https://www.ansible.com">https://www.ansible.com</a>) là một công cụ mã nguồn mở dùng để tự động hoá các tác vụ quản trị hệ thống và triển khai ứng dụng. Với việc dùng ansible mình không cần ssh lên từng server và chạy code.
+<br>
+<br>
+<strong>Luồng deploy rút gọn với ansible</strong>
+<br>
+1. Commit code chạy lên github
+<br>
+2. Chạy file ansible trên localhost
+<br>
+<hr>
+Mình dùng github action kết hợp với ansible. Github action (<a href="https://docs.github.com/en/actions">https://docs.github.com/en/actions</a>) giúp chạy lệnh trên server khi user commit code lên github. Bằng cách cài github runner trên webserver, mỗi khi mình commit code lên github runner sẽ tự động chạy playbook ansible reload server, qua đó tự động hoàn toàn việc deploy website.
+<br>
+<br>
+<strong>Luồng deploy rút gọn với ansible và github action</strong>
+<br>
+1. Commit code chạy lên github
+<br>
+<br>
+<br>
+{% include "comment.html" %}
+{% endblock %}
