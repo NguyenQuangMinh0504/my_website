@@ -92,6 +92,7 @@ DATABASES = {
         "NAME": "blog",
         "HOST": DB_HOST,
         "CONN_MAX_AGE": None,
+        "CONN_HEALTH_CHECKS": True,
     }
 }
 
