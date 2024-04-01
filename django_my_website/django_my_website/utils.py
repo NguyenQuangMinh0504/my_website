@@ -50,5 +50,8 @@ def add_metadata(request: HttpRequest) -> str:
 
     # Adding HTTP Referer
     http_referer = request.META.get("HTTP_REFERER")
-    message += "\n HTTP Referer: " + http_referer
+    if http_referer is None:
+        message += "\n HTTP Referer: None"
+    else:
+        message += "\n HTTP Referer: " + http_referer
     return message
