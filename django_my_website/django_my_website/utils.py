@@ -24,6 +24,8 @@ def get_ip_location(ip_address: str):
 
 def add_metadata(request: HttpRequest) -> str:
     """Return meta data of request"""
+
+    # Adding User Agent
     user_agent = request.META["HTTP_USER_AGENT"]
     for bot in ["http://www.google.com/bot.html",
                 "http://www.bing.com/bingbot.htm",
@@ -34,11 +36,19 @@ def add_metadata(request: HttpRequest) -> str:
             return ""
     message = "\n User-Agent: " + user_agent
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+    # Adding IP
     ip = None
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
     else:
         ip = request.META.get('REMOTE_ADDR')
     message += "\n Ip Address: " + ip
+
+    # Adding Location
     message += "\n Location: " + get_ip_location(ip_address=ip)
+
+    # Adding HTTP Referer
+    http_referer = request.META.get("HTTP_REFERER")
+    message += "\n HTTP Referer: " + http_referer
     return message
