@@ -10,7 +10,7 @@ class Blog(models.Model):
     snippet = models.CharField(max_length=255)
     content = models.TextField()
     total_view = models.SmallIntegerField(default=0)
-    date = models.DateField(auto_now=True)
+    date = models.DateField(auto_now_add=True, auto_created=False)
 
     def __str__(self):
         return str(self.title)
